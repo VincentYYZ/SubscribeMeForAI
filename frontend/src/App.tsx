@@ -1,23 +1,22 @@
-﻿import "./App.css";
+﻿import { Navbar } from "./components/layout/Navbar";
+import { Footer } from "./components/layout/Footer";
+import { Hero } from "./components/sections/Hero";
+import { Features } from "./components/sections/Features";
+import { Pricing } from "./components/sections/Pricing";
+import { FAQ } from "./components/sections/FAQ";
 
 function App() {
   return (
-    <main className="app">
-      <section className="hero">
-        <p className="eyebrow">Welcome</p>
-        <h1>SubscribeMeForAI</h1>
-        <p>
-          React + TypeScript frontend is ready. Start building the subscription experience and
-          connect it to the Django API under <code>/api</code> when available.
-        </p>
-        <div className="cta">
-          <button type="button">Get Started</button>
-          <button type="button" className="secondary">
-            Learn More
-          </button>
-        </div>
-      </section>
-    </main>
+    <div className="min-h-screen flex flex-col font-sans">
+      <Navbar />
+      <main className="flex-1">
+        <Hero />
+        <Features />
+        <Pricing />
+        <FAQ />
+      </main>
+      <Footer />
+    </div>
   );
 }
 
