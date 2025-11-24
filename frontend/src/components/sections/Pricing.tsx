@@ -1,6 +1,35 @@
 import { Button } from "../ui/Button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/Card";
 import { Check } from "lucide-react";
+import { cn } from "../../lib/utils";
+
+export const pricingPlans = [
+    {
+        title: "基础版",
+        description: "适合想尝试 AI 编程的初学者",
+        price: "¥299",
+        features: [
+            "包含所有基础视频课程",
+            "项目源码下载",
+            "社区交流权限",
+        ],
+        highlighted: false,
+        badge: null,
+    },
+    {
+        title: "实战版",
+        description: "适合想深入学习并落地的开发者",
+        price: "¥599",
+        features: [
+            "包含基础版所有内容",
+            "高级实战项目源码",
+            "1对1 答疑指导",
+            "商业化落地咨询",
+        ],
+        highlighted: true,
+        badge: "推荐",
+    },
+];
 
 export function Pricing() {
     return (
@@ -14,65 +43,39 @@ export function Pricing() {
                 </p>
             </div>
             <div className="mx-auto grid max-w-screen-lg gap-4 py-8 md:grid-cols-2 lg:gap-8">
-                <Card className="flex flex-col">
-                    <CardHeader>
-                        <CardTitle className="text-2xl">基础版</CardTitle>
-                        <CardDescription>适合想尝试 AI 编程的初学者</CardDescription>
-                    </CardHeader>
-                    <CardContent className="grid gap-4">
-                        <div className="text-4xl font-bold">¥299</div>
-                        <div className="grid gap-2">
-                            <div className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                <span className="text-sm text-muted-foreground">包含所有基础视频课程</span>
+                {pricingPlans.map((plan) => (
+                    <Card
+                        key={plan.title}
+                        className={cn(
+                            "flex flex-col relative overflow-hidden",
+                            plan.highlighted ? "border-primary shadow-lg" : ""
+                        )}
+                    >
+                        {plan.badge && (
+                            <div className="absolute top-0 right-0 bg-primary text-primary-foreground px-3 py-1 text-xs font-bold rounded-bl-lg">
+                                {plan.badge}
                             </div>
-                            <div className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                <span className="text-sm text-muted-foreground">项目源码下载</span>
+                        )}
+                        <CardHeader>
+                            <CardTitle className="text-2xl">{plan.title}</CardTitle>
+                            <CardDescription>{plan.description}</CardDescription>
+                        </CardHeader>
+                        <CardContent className="grid gap-4">
+                            <div className="text-4xl font-bold">{plan.price}</div>
+                            <div className="grid gap-2">
+                                {plan.features.map((feature) => (
+                                    <div key={feature} className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-primary" />
+                                        <span className="text-sm text-muted-foreground">{feature}</span>
+                                    </div>
+                                ))}
                             </div>
-                            <div className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                <span className="text-sm text-muted-foreground">社区交流权限</span>
-                            </div>
-                        </div>
-                    </CardContent>
-                    <CardFooter className="mt-auto">
-                        <Button className="w-full">立即购买</Button>
-                    </CardFooter>
-                </Card>
-                <Card className="flex flex-col border-primary shadow-lg relative overflow-hidden">
-                    <div className="absolute top-0 right-0 bg-primary text-primary-foreground px-3 py-1 text-xs font-bold rounded-bl-lg">
-                        推荐
-                    </div>
-                    <CardHeader>
-                        <CardTitle className="text-2xl">实战版</CardTitle>
-                        <CardDescription>适合想深入学习并落地的开发者</CardDescription>
-                    </CardHeader>
-                    <CardContent className="grid gap-4">
-                        <div className="text-4xl font-bold">¥599</div>
-                        <div className="grid gap-2">
-                            <div className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                <span className="text-sm text-muted-foreground">包含基础版所有内容</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                <span className="text-sm text-muted-foreground">高级实战项目源码</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                <span className="text-sm text-muted-foreground">1对1 答疑指导</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-primary" />
-                                <span className="text-sm text-muted-foreground">商业化落地咨询</span>
-                            </div>
-                        </div>
-                    </CardContent>
-                    <CardFooter className="mt-auto">
-                        <Button className="w-full" variant="default">立即购买</Button>
-                    </CardFooter>
-                </Card>
+                        </CardContent>
+                        <CardFooter className="mt-auto">
+                            <Button className="w-full">立即购买</Button>
+                        </CardFooter>
+                    </Card>
+                ))}
             </div>
         </section>
     );

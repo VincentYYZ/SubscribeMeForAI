@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/Card";
 import { Code, Terminal, Cpu, Globe, Database, Rocket } from "lucide-react";
 
-const features = [
+export const courseFeatures = [
     {
         title: "AI 编程基础",
         description: "从零开始学习 AI 编程的基础概念，掌握 Prompt Engineering 核心技巧。",
@@ -46,7 +46,7 @@ export function Features() {
                 </p>
             </div>
             <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
-                {features.map((feature) => (
+                {courseFeatures.map((feature) => (
                     <Card key={feature.title} className="flex flex-col justify-between overflow-hidden">
                         <CardHeader className="grid gap-1 p-6">
                             <feature.icon className="h-10 w-10 text-primary" />

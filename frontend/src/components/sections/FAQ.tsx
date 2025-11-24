@@ -5,7 +5,7 @@ import {
     AccordionTrigger,
 } from "../ui/Accordion"
 
-const faqs = [
+export const faqItems = [
     {
         question: "课程适合零基础吗？",
         answer: "完全适合。我们的课程设计就是针对零基础学员的，会从最基本的概念讲起，配合 AI 工具，让你轻松上手。",
@@ -37,7 +37,7 @@ export function FAQ() {
             </div>
             <div className="mx-auto max-w-[58rem] py-8">
                 <Accordion type="single" collapsible className="w-full">
-                    {faqs.map((faq, index) => (
+                    {faqItems.map((faq, index) => (
                         <AccordionItem key={index} value={`item-${index}`}>
                             <AccordionTrigger>{faq.question}</AccordionTrigger>
                             <AccordionContent>{faq.answer}</AccordionContent>
