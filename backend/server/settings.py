@@ -79,7 +79,7 @@ DATABASES = {
         "USER": "subscribeme",
         "PASSWORD": "pass123",
         "HOST": "127.0.0.1",   # or the container IP if different
-        "PORT": "5432",
+        "PORT": "5433",
     }
 }
 

@@ -1,0 +1,11 @@
+ NewStrongPass 是你本机 PostgreSQL 的管理员用户 postgres 的密码（你刚刚用它登录并创建了用户/数据库）。
+                                                                                                                  
+  你的 Django 配置里要用的是你新建的这个账号：                                                                    
+                                                                                                                  
+  - 数据库用户：subscribeme                                                                                       
+  - 密码：pass123                                                                                                 
+  - 数据库名：subscribeme                                                                                         
+  - 主机：127.0.0.1                                                                                               
+  - 端口：5433                                                                                                    
+            
+
