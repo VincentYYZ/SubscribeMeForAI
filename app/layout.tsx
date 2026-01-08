@@ -1,0 +1,25 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { TRPCProvider } from "./providers";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "SubscribeMeForAI - AI Learning Platform",
+  description: "Learn AI with curated resources and courses",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <TRPCProvider>{children}</TRPCProvider>
+      </body>
+    </html>
+  );
+}
