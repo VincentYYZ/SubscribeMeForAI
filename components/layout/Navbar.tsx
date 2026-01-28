@@ -21,22 +21,28 @@ export function Navbar() {
                     </a>
                     <nav className="flex items-center space-x-8 text-sm font-medium">
                         <a
-                            href="#features"
+                            href="/robot-xiaoyou"
                             className="text-slate-600 hover:text-blue-600 transition-colors"
                         >
-                            课程内容
+                            机器人小鼬
                         </a>
                         <a
-                            href="#faq"
+                            href="/ai-coding"
                             className="text-slate-600 hover:text-blue-600 transition-colors"
                         >
-                            FAQ
+                            AI编程
                         </a>
                         <a
-                            href="#pricing"
+                            href="/ai-agent"
                             className="text-slate-600 hover:text-blue-600 transition-colors"
                         >
-                            价格
+                            AI-Agent
+                        </a>
+                        <a
+                            href="/contact"
+                            className="text-slate-600 hover:text-blue-600 transition-colors"
+                        >
+                            联系我
                         </a>
                     </nav>
                 </div>
@@ -65,25 +71,32 @@ export function Navbar() {
                 <div className="container md:hidden border-t border-blue-100">
                     <div className="flex flex-col space-y-3 py-4">
                         <a
-                            href="#features"
+                            href="/robot-xiaoyou"
                             className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors py-2"
                             onClick={() => setIsOpen(false)}
                         >
-                            课程内容
+                            机器人小鼬
                         </a>
                         <a
-                            href="#faq"
+                            href="/ai-coding"
                             className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors py-2"
                             onClick={() => setIsOpen(false)}
                         >
-                            FAQ
+                            AI编程
                         </a>
                         <a
-                            href="#pricing"
+                            href="/ai-agent"
                             className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors py-2"
                             onClick={() => setIsOpen(false)}
                         >
-                            价格
+                            AI-Agent
+                        </a>
+                        <a
+                            href="/contact"
+                            className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors py-2"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            联系我
                         </a>
                     </div>
                 </div>

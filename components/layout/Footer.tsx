@@ -16,7 +16,7 @@ export function Footer() {
                         </h2>
                     </div>
                     <p className="text-sm text-slate-600 leading-relaxed">
-                        零基础也能用 AI 做出第一个能赚钱的项目。
+                        零基础也能用 AI 做出第一个能赚钱的项目。d 得到
                     </p>
                 </div>
                 <div className="grid flex-1 grid-cols-2 gap-12 sm:grid-cols-3">

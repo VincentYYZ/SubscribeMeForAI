@@ -1,0 +1,21 @@
+name: Deploy Documentation
+
+# 当content目录下的文件变化时触发
+# Trigger when files in content directory change
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'content/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 触发服务器更新 / Trigger server update
+        run: |
+          curl -X POST https://your-server.com/webhook \
+            -H "Content-Type: application/json" \
+            -d '{"ref": "refs/heads/main"}'
