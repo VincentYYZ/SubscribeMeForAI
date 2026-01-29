@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
     return (
         <nav className="sticky top-0 z-50 w-full border-b border-blue-100 bg-white/80 backdrop-blur-lg supports-[backdrop-filter]:bg-white/60">
@@ -57,12 +58,20 @@ export function Navbar() {
                     <div className="w-full flex-1 md:w-auto md:flex-none">
                         {/* Add search or other items here if needed */}
                     </div>
-                    <nav className="flex items-center">
-                        <Button 
-                            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all"
+                    <nav className="flex items-center space-x-2">
+                        <Button
+                            variant="outline"
                             size="sm"
+                            className="border-slate-200 text-slate-700 hover:bg-slate-50"
                         >
-                            开始学习
+                            登录
+                        </Button>
+                        <Button
+                            size="sm"
+                            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all"
+                            onClick={() => setIsRegisterOpen(true)}
+                        >
+                            注册
                         </Button>
                     </nav>
                 </div>
@@ -98,6 +107,53 @@ export function Navbar() {
                         >
                             联系我
                         </a>
+                    </div>
+                </div>
+            )}
+            {isRegisterOpen && (
+                <div className="fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-slate-950/40 px-4">
+                    <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+                        <div className="flex items-center justify-between">
+                            <h2 className="text-lg font-semibold text-slate-900">注册</h2>
+                            <button
+                                className="rounded-lg px-2 py-1 text-slate-500 hover:text-slate-700"
+                                onClick={() => setIsRegisterOpen(false)}
+                            >
+                                关闭
+                            </button>
+                        </div>
+                        <form className="mt-4 space-y-4">
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium text-slate-700">用户名</label>
+                                <input
+                                    type="text"
+                                    placeholder="请输入用户名"
+                                    className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium text-slate-700">密码</label>
+                                <input
+                                    type="password"
+                                    placeholder="请输入密码"
+                                    className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium text-slate-700">PIN码</label>
+                                <input
+                                    type="text"
+                                    placeholder="请输入PIN码"
+                                    className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                />
+                            </div>
+                            <Button
+                                type="button"
+                                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                            >
+                                提交注册
+                            </Button>
+                        </form>
                     </div>
                 </div>
             )}
