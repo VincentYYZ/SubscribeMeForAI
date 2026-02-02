@@ -1,0 +1,51 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { Button } from '@/components/ui/Button'
+
+interface RequireLoginProps {
+  children: React.ReactNode
+}
+
+export function RequireLogin({ children }: RequireLoginProps) {
+  const [checked, setChecked] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    const hasUser = window.localStorage.getItem('currentUserName')
+    const hasAdmin = window.localStorage.getItem('isAdmin') === 'true'
+    setIsLoggedIn(Boolean(hasUser || hasAdmin))
+    setChecked(true)
+  }, [])
+
+  if (!checked) {
+    return (
+      <div className="min-h-screen bg-white">
+        <div className="container mx-auto p-6">
+          正在检查登录状态...
+        </div>
+      </div>
+    )
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <div className="min-h-screen bg-white">
+        <div className="container mx-auto p-6">
+          <div className="rounded-xl border border-slate-200 bg-white p-10 text-center shadow-sm">
+            <h1 className="text-2xl font-semibold text-slate-900">请先登录</h1>
+            <p className="mt-2 text-slate-600">登录后即可访问此页面。</p>
+            <Button
+              className="mt-6 bg-slate-900 hover:bg-slate-800"
+              onClick={() => (window.location.href = '/')}
+            >
+              返回首页
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return <>{children}</>
+}
