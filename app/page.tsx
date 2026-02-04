@@ -6,12 +6,18 @@ import { FAQ } from "@/components/sections/FAQ";
 
 export default function HomePage() {
   return (
-    <div>
-      <Hero />
-      <HomeTabs />
-      <Features />
-      <Pricing />
-      <FAQ />
+    <div className="relative min-h-screen bg-slate-950">
+      {/* Subtle gradient background - Konsta style cleaner look */}
+      <div className="fixed inset-0 bg-gradient-to-b from-slate-900 to-slate-950" />
+
+      {/* Content */}
+      <div className="relative">
+        <Hero />
+        <HomeTabs />
+        <Features />
+        <Pricing />
+        <FAQ />
+      </div>
     </div>
   );
 }

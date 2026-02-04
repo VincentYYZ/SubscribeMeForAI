@@ -1,41 +1,61 @@
+﻿import Link from "next/link";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export function Hero() {
     return (
-        <section className="relative overflow-hidden gradient-bg">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0di00aC0ydjRoLTJ2MmgydjJoMnYtMmgydi0yaC0ydjJoLTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30"></div>
-            
-            <div className="relative space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
-                <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center px-4 md:px-6 mx-auto">
+        <section className="relative overflow-hidden py-10 md:py-16 lg:py-28">
+            {/* Konsta-inspired subtle gradients */}
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 to-slate-950" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.08),transparent_55%)]" />
+
+            <div className="relative space-y-6">
+                <div className="container flex max-w-[64rem] flex-col items-center gap-6 text-center px-4 md:px-6 mx-auto">
+                    {/* Badge with Konsta styling */}
                     <div className="animate-fade-in">
-                        <a
-                            href="#"
-                            className="inline-flex items-center rounded-full bg-blue-600/10 border border-blue-600/20 px-4 py-1.5 text-sm font-medium text-blue-600 hover:bg-blue-600/20 transition-colors"
-                        >
-                            <span className="mr-2">🎉</span>
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/80 border border-white/10 text-slate-100/90 text-sm font-medium shadow-lg">
+                            <Sparkles className="w-4 h-4 text-cyan-400" />
                             2024 最新 AI 编程实战课程
-                        </a>
+                        </div>
                     </div>
-                    
-                    <h1 className="animate-slide-up font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+
+                    {/* Main heading */}
+                    <h1 className="animate-slide-up font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white">
                         零基础也能用{" "}
-                        <span className="gradient-text">AI</span>
+                        <span className="bg-gradient-to-r from-cyan-300 via-blue-200 to-purple-300 bg-clip-text text-transparent">
+                            AI
+                        </span>
                         <br />
                         做出第一个能赚钱的项目
                     </h1>
-                    
-                    <p className="animate-slide-up max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8" style={{ animationDelay: "0.1s" }}>
+
+                    {/* Description */}
+                    <p
+                        className="animate-slide-up max-w-[42rem] text-base leading-relaxed text-slate-300 sm:text-xl"
+                        style={{ animationDelay: "0.1s" }}
+                    >
                         不需要深厚的编程功底，不需要复杂的算法知识。
                         只要你有一颗想创造的心，AI 就是你最强大的武器。
                         带你从零开始，一步步完成自己的 AI 产品。
                     </p>
-                    
-                    <div className="animate-scale-in flex flex-col sm:flex-row gap-4" style={{ animationDelay: "0.2s" }}>
-                        <Button size="lg" className="shadow-lg hover:shadow-xl transition-shadow">
+
+                    {/* CTA Buttons with Konsta styling */}
+                    <div
+                        className="animate-scale-in flex flex-col sm:flex-row gap-4"
+                        style={{ animationDelay: "0.2s" }}
+                    >
+                        <Button 
+                            size="lg" 
+                            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg hover:shadow-xl transition-all duration-200 rounded-xl px-8"
+                        >
                             开始学习
+                            <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
-                        <Button size="lg" variant="outline" className="shadow-lg hover:shadow-xl transition-shadow">
+                        <Button
+                            size="lg"
+                            variant="outline"
+                            className="border-white/20 bg-slate-900/50 text-white hover:bg-slate-800/50 hover:border-white/30 rounded-xl px-8"
+                        >
                             查看大纲
                         </Button>
                     </div>
@@ -44,3 +64,5 @@ export function Hero() {
         </section>
     );
 }
+
+

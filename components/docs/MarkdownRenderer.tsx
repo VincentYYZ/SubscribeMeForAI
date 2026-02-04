@@ -58,7 +58,7 @@ export function MarkdownRenderer({ content, onHeadingsExtracted }: MarkdownRende
   }, [extractedHeadings, onHeadingsExtracted]);
 
   return (
-    <article className="prose prose-slate max-w-none px-8 py-6">
+    <article className="prose prose-invert max-w-none rounded-3xl glass-surface p-8">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -116,3 +116,4 @@ export function MarkdownRenderer({ content, onHeadingsExtracted }: MarkdownRende
     </article>
   );
 }
+

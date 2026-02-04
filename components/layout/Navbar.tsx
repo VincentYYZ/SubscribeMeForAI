@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { Button } from "@/components/ui/Button";
 import { Menu, X, Sparkles } from "lucide-react";
@@ -25,13 +25,16 @@ export function Navbar() {
     const [userPassword, setUserPassword] = useState("");
     const [userPin, setUserPin] = useState("");
     const [currentUserName, setCurrentUserName] = useState<string | null>(null);
+
     const isLoggedIn = Boolean(currentUserName || isAdmin);
+
     const adminCredentials = {
         username: "admin",
         email: "admin@qq.com",
         password: "admin",
         pin: "1212",
     };
+
     const registerMutation = trpc.user.register.useMutation({
         onSuccess: () => {
             alert("注册成功！已同步到数据库 / Registration successful");
@@ -45,6 +48,7 @@ export function Navbar() {
             alert(error.message || "注册失败 / Registration failed");
         },
     });
+
     const userLoginMutation = trpc.user.login.useMutation({
         onSuccess: (user) => {
             window.localStorage.setItem("currentUserName", user.name || "用户");
@@ -103,14 +107,14 @@ export function Navbar() {
     };
 
     return (
-        <nav className="sticky top-0 z-50 w-full border-b border-blue-100 bg-white/80 backdrop-blur-lg supports-[backdrop-filter]:bg-white/60">
+        <nav className="sticky top-0 z-50 w-full border-b border-white/15 bg-white/5 backdrop-blur-2xl">
             <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
                 <div className="mr-4 hidden md:flex">
                     <Link href="/" className="mr-8 flex items-center space-x-2 group">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white shadow-lg group-hover:shadow-xl transition-shadow">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400 to-blue-500 text-white shadow-lg group-hover:shadow-xl transition-shadow">
                             <Sparkles className="h-5 w-5" />
                         </div>
-                        <span className="font-bold text-lg bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        <span className="font-bold text-lg bg-gradient-to-r from-cyan-200 via-blue-200 to-purple-300 bg-clip-text text-transparent">
                             HappyAICoding
                         </span>
                     </Link>
@@ -119,31 +123,31 @@ export function Navbar() {
                             <>
                                 <Link
                                     href="/robot-xiaoyou"
-                                    className="text-slate-600 hover:text-blue-600 transition-colors"
+                                    className="text-slate-200/80 hover:text-white transition-colors"
                                 >
-                                    机器人小鼬
+                                    机器人小友
                                 </Link>
                                 <Link
                                     href="/ai-coding"
-                                    className="text-slate-600 hover:text-blue-600 transition-colors"
+                                    className="text-slate-200/80 hover:text-white transition-colors"
                                 >
-                                    AI编程
+                                    AI 编程
                                 </Link>
                                 <Link
                                     href="/ai-agent"
-                                    className="text-slate-600 hover:text-blue-600 transition-colors"
+                                    className="text-slate-200/80 hover:text-white transition-colors"
                                 >
                                     AI-Agent
                                 </Link>
                                 <Link
                                     href="/ai-model"
-                                    className="text-slate-600 hover:text-blue-600 transition-colors"
+                                    className="text-slate-200/80 hover:text-white transition-colors"
                                 >
                                     AI 模型
                                 </Link>
                                 <Link
                                     href="/english-learning"
-                                    className="text-slate-600 hover:text-blue-600 transition-colors"
+                                    className="text-slate-200/80 hover:text-white transition-colors"
                                 >
                                     英语学习
                                 </Link>
@@ -151,14 +155,14 @@ export function Navbar() {
                         )}
                         <Link
                             href="/contact"
-                            className="text-slate-600 hover:text-blue-600 transition-colors"
+                            className="text-slate-200/80 hover:text-white transition-colors"
                         >
-                            联系我
+                            联系我们
                         </Link>
                         {isAdmin && (
                             <Link
                                 href="/admin/settings"
-                                className="text-slate-600 hover:text-blue-600 transition-colors"
+                                className="text-slate-200/80 hover:text-white transition-colors"
                             >
                                 设置
                             </Link>
@@ -166,7 +170,7 @@ export function Navbar() {
                     </nav>
                 </div>
                 <button
-                    className="inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:pointer-events-none disabled:opacity-50 hover:bg-slate-100 h-10 py-2 mr-2 px-3 text-slate-600 md:hidden"
+                    className="inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 disabled:pointer-events-none disabled:opacity-50 hover:bg-white/10 h-10 py-2 mr-2 px-3 text-slate-200 md:hidden"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -180,7 +184,7 @@ export function Navbar() {
                         <Button
                             variant="outline"
                             size="sm"
-                            className="border-slate-200 text-slate-700 hover:bg-slate-50"
+                            className="border-white/20 text-white/80 hover:text-white hover:bg-white/10"
                             onClick={() => {
                                 setLoginMode("user");
                                 setIsLoginOpen(true);
@@ -192,7 +196,7 @@ export function Navbar() {
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className="border-slate-200 text-slate-700 hover:bg-slate-50"
+                                className="border-white/20 text-white/80 hover:text-white hover:bg-white/10"
                                 onClick={handleLogout}
                             >
                                 退出登录
@@ -200,7 +204,7 @@ export function Navbar() {
                         )}
                         <Button
                             size="sm"
-                            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all"
+                            className="glass-surface text-white shadow-lg hover:shadow-xl transition-all"
                             onClick={() => setIsRegisterOpen(true)}
                         >
                             注册
@@ -209,41 +213,41 @@ export function Navbar() {
                 </div>
             </div>
             {isOpen && (
-                <div className="container md:hidden border-t border-blue-100">
+                <div className="container md:hidden border-t border-white/15 bg-white/5 backdrop-blur-2xl">
                     <div className="flex flex-col space-y-3 py-4">
                         {isLoggedIn && (
                             <>
                                 <Link
                                     href="/robot-xiaoyou"
-                                    className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors py-2"
+                                    className="text-sm font-medium text-slate-200/80 hover:text-white transition-colors py-2"
                                     onClick={() => setIsOpen(false)}
                                 >
-                                    机器人小鼬
+                                    机器人小友
                                 </Link>
                                 <Link
                                     href="/ai-coding"
-                                    className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors py-2"
+                                    className="text-sm font-medium text-slate-200/80 hover:text-white transition-colors py-2"
                                     onClick={() => setIsOpen(false)}
                                 >
-                                    AI编程
+                                    AI 编程
                                 </Link>
                                 <Link
                                     href="/ai-agent"
-                                    className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors py-2"
+                                    className="text-sm font-medium text-slate-200/80 hover:text-white transition-colors py-2"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     AI-Agent
                                 </Link>
                                 <Link
                                     href="/ai-model"
-                                    className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors py-2"
+                                    className="text-sm font-medium text-slate-200/80 hover:text-white transition-colors py-2"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     AI 模型
                                 </Link>
                                 <Link
                                     href="/english-learning"
-                                    className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors py-2"
+                                    className="text-sm font-medium text-slate-200/80 hover:text-white transition-colors py-2"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     英语学习
@@ -252,15 +256,15 @@ export function Navbar() {
                         )}
                         <Link
                             href="/contact"
-                            className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors py-2"
+                            className="text-sm font-medium text-slate-200/80 hover:text-white transition-colors py-2"
                             onClick={() => setIsOpen(false)}
                         >
-                            联系我
+                            联系我们
                         </Link>
                         {isAdmin && (
                             <Link
                                 href="/admin/settings"
-                                className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors py-2"
+                                className="text-sm font-medium text-slate-200/80 hover:text-white transition-colors py-2"
                                 onClick={() => setIsOpen(false)}
                             >
                                 设置
@@ -270,24 +274,24 @@ export function Navbar() {
                 </div>
             )}
             {isLoginOpen && (
-                <div className="fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-slate-950/40 px-4">
-                    <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+                <div className="fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-slate-950/60 px-4">
+                    <div className="w-full max-w-md rounded-2xl glass-surface bg-white/5 p-6 shadow-2xl">
                         <div className="flex items-center justify-between">
-                            <h2 className="text-lg font-semibold text-slate-900">登录</h2>
+                            <h2 className="text-lg font-semibold text-white">登录</h2>
                             <button
-                                className="rounded-lg px-2 py-1 text-slate-500 hover:text-slate-700"
+                                className="rounded-lg px-2 py-1 text-slate-300 hover:text-white"
                                 onClick={() => setIsLoginOpen(false)}
                             >
                                 关闭
                             </button>
                         </div>
-                        <div className="mt-4 flex rounded-lg border border-slate-200 p-1">
+                        <div className="mt-4 flex rounded-lg border border-white/15 bg-white/5 p-1">
                             <button
                                 type="button"
                                 onClick={() => setLoginMode("user")}
                                 className={`flex-1 rounded-md px-3 py-2 text-sm font-medium transition-colors ${loginMode === "user"
-                                    ? "bg-slate-900 text-white"
-                                    : "text-slate-600 hover:text-slate-900"
+                                    ? "bg-white/10 text-white"
+                                    : "text-slate-300 hover:text-white"
                                     }`}
                             >
                                 普通用户
@@ -296,8 +300,8 @@ export function Navbar() {
                                 type="button"
                                 onClick={() => setLoginMode("admin")}
                                 className={`flex-1 rounded-md px-3 py-2 text-sm font-medium transition-colors ${loginMode === "admin"
-                                    ? "bg-slate-900 text-white"
-                                    : "text-slate-600 hover:text-slate-900"
+                                    ? "bg-white/10 text-white"
+                                    : "text-slate-300 hover:text-white"
                                     }`}
                             >
                                 管理员
@@ -321,7 +325,7 @@ export function Navbar() {
                         >
                             <>
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-slate-700">用户名</label>
+                                    <label className="text-sm font-medium text-slate-200">用户名</label>
                                     <input
                                         type="text"
                                         placeholder="请输入用户名"
@@ -331,11 +335,11 @@ export function Navbar() {
                                                 ? setAdminUsername(event.target.value)
                                                 : setUserName(event.target.value)
                                         }
-                                        className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                        className="w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-slate-400 outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20"
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-slate-700">邮箱</label>
+                                    <label className="text-sm font-medium text-slate-200">邮箱</label>
                                     <input
                                         type="email"
                                         placeholder="请输入邮箱"
@@ -345,11 +349,11 @@ export function Navbar() {
                                                 ? setAdminEmail(event.target.value)
                                                 : setUserEmail(event.target.value)
                                         }
-                                        className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                        className="w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-slate-400 outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20"
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-slate-700">密码</label>
+                                    <label className="text-sm font-medium text-slate-200">密码</label>
                                     <input
                                         type="password"
                                         placeholder="请输入密码"
@@ -359,27 +363,27 @@ export function Navbar() {
                                                 ? setAdminPassword(event.target.value)
                                                 : setUserPassword(event.target.value)
                                         }
-                                        className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                        className="w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-slate-400 outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20"
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-slate-700">PIN码</label>
+                                    <label className="text-sm font-medium text-slate-200">PIN 码</label>
                                     <input
                                         type="text"
-                                        placeholder="请输入PIN码"
+                                        placeholder="请输入 PIN 码"
                                         value={loginMode === "admin" ? adminPin : userPin}
                                         onChange={(event) =>
                                             loginMode === "admin"
                                                 ? setAdminPin(event.target.value)
                                                 : setUserPin(event.target.value)
                                         }
-                                        className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                        className="w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-slate-400 outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20"
                                     />
                                 </div>
                                 <Button
                                     type="submit"
                                     disabled={loginMode === "user" && userLoginMutation.isPending}
-                                    className="w-full bg-slate-900 hover:bg-slate-800"
+                                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500"
                                 >
                                     {loginMode === "user" && userLoginMutation.isPending
                                         ? "登录中..."
@@ -391,12 +395,12 @@ export function Navbar() {
                 </div>
             )}
             {isRegisterOpen && (
-                <div className="fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-slate-950/40 px-4">
-                    <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+                <div className="fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-slate-950/60 px-4">
+                    <div className="w-full max-w-md rounded-2xl glass-surface bg-white/5 p-6 shadow-2xl">
                         <div className="flex items-center justify-between">
-                            <h2 className="text-lg font-semibold text-slate-900">注册</h2>
+                            <h2 className="text-lg font-semibold text-white">注册</h2>
                             <button
-                                className="rounded-lg px-2 py-1 text-slate-500 hover:text-slate-700"
+                                className="rounded-lg px-2 py-1 text-slate-300 hover:text-white"
                                 onClick={() => setIsRegisterOpen(false)}
                             >
                                 关闭
@@ -415,43 +419,43 @@ export function Navbar() {
                             }}
                         >
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-slate-700">用户名</label>
+                                <label className="text-sm font-medium text-slate-200">用户名</label>
                                 <input
                                     type="text"
                                     placeholder="请输入用户名"
                                     value={registerName}
                                     onChange={(event) => setRegisterName(event.target.value)}
-                                    className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                    className="w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-slate-400 outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20"
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-slate-700">邮箱</label>
+                                <label className="text-sm font-medium text-slate-200">邮箱</label>
                                 <input
                                     type="email"
                                     placeholder="请输入邮箱"
                                     value={registerEmail}
                                     onChange={(event) => setRegisterEmail(event.target.value)}
-                                    className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                    className="w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-slate-400 outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20"
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-slate-700">密码</label>
+                                <label className="text-sm font-medium text-slate-200">密码</label>
                                 <input
                                     type="password"
                                     placeholder="请输入密码"
                                     value={registerPassword}
                                     onChange={(event) => setRegisterPassword(event.target.value)}
-                                    className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                    className="w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-slate-400 outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20"
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-slate-700">PIN码</label>
+                                <label className="text-sm font-medium text-slate-200">PIN 码</label>
                                 <input
                                     type="text"
-                                    placeholder="请输入PIN码"
+                                    placeholder="请输入 PIN 码"
                                     value={registerPin}
                                     onChange={(event) => setRegisterPin(event.target.value)}
-                                    className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                    className="w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-slate-400 outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20"
                                 />
                             </div>
                             <Button
@@ -468,3 +472,4 @@ export function Navbar() {
         </nav>
     );
 }
+

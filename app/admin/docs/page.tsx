@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
@@ -52,7 +52,7 @@ export default function AdminDocsPage() {
   const saveDocument = async () => {
     const slug = selectedFile || newFileName;
     if (!slug) {
-      alert('请输入文件名 / Please enter a file name');
+      alert('璇疯緭鍏ユ枃浠跺悕 / Please enter a file name');
       return;
     }
 
@@ -67,7 +67,7 @@ export default function AdminDocsPage() {
     });
 
     if (res.ok) {
-      alert('保存成功！/ Saved successfully!');
+      alert('淇濆瓨鎴愬姛锛? Saved successfully!');
       setIsEditing(false);
       setNewFileName('');
       loadFiles(selectedCategory);
@@ -75,12 +75,12 @@ export default function AdminDocsPage() {
         setSelectedFile(slug);
       }
     } else {
-      alert('保存失败 / Save failed');
+      alert('淇濆瓨澶辫触 / Save failed');
     }
   };
 
   const deleteDocument = async () => {
-    if (!confirm('确定要删除这个文档吗？/ Are you sure you want to delete this document?')) {
+    if (!confirm('纭畾瑕佸垹闄よ繖涓枃妗ｅ悧锛? Are you sure you want to delete this document?')) {
       return;
     }
 
@@ -89,36 +89,36 @@ export default function AdminDocsPage() {
     });
 
     if (res.ok) {
-      alert('删除成功！/ Deleted successfully!');
+      alert('鍒犻櫎鎴愬姛锛? Deleted successfully!');
       setSelectedFile('');
       setContent('');
       loadFiles(selectedCategory);
     } else {
-      alert('删除失败 / Delete failed');
+      alert('鍒犻櫎澶辫触 / Delete failed');
     }
   };
 
   const createNewDocument = () => {
     setSelectedFile('');
-    setContent('# 新文档\n\n## 章节1\n\n内容...');
+    setContent('# 鏂版枃妗n\n## 绔犺妭1\n\n鍐呭...');
     setIsEditing(true);
   };
 
   return (
     <RequireLogin>
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen">
         <div className="container mx-auto p-6">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold text-slate-900">文档管理后台</h1>
-            <p className="text-slate-600 mt-2">Document Management Dashboard</p>
+            <h1 className="text-3xl font-bold text-white">鏂囨。绠＄悊鍚庡彴</h1>
+            <p className="text-slate-300 mt-2">Document Management Dashboard</p>
           </div>
 
           <div className="grid grid-cols-12 gap-6">
-            {/* 左侧：分类和文件列表 */}
-            <div className="col-span-3 bg-white rounded-lg shadow p-4">
+            {/* 宸︿晶锛氬垎绫诲拰鏂囦欢鍒楄〃 */}
+            <div className="col-span-3 glass-surface bg-white/5 rounded-lg shadow p-4">
               <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
                 <FolderOpen className="h-5 w-5" />
-                分类 / Categories
+                鍒嗙被 / Categories
               </h2>
               <div className="space-y-2">
                 {categories.map(cat => (
@@ -126,8 +126,8 @@ export default function AdminDocsPage() {
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
                     className={`w-full text-left px-3 py-2 rounded transition-colors ${selectedCategory === cat
-                        ? 'bg-blue-100 text-blue-700 font-medium'
-                        : 'hover:bg-slate-100'
+                        ? 'bg-white/15 text-white font-medium'
+                        : 'hover:bg-white/10'
                       }`}
                   >
                     {cat}
@@ -137,11 +137,11 @@ export default function AdminDocsPage() {
 
               {selectedCategory && (
                 <>
-                  <hr className="my-4" />
+                  <hr className="my-4 border-white/10" />
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="font-semibold flex items-center gap-2">
                       <FileText className="h-4 w-4" />
-                      文档 / Documents
+                      鏂囨。 / Documents
                     </h3>
                     <Button
                       size="sm"
@@ -158,7 +158,7 @@ export default function AdminDocsPage() {
                         onClick={() => setSelectedFile(file)}
                         className={`w-full text-left px-2 py-1.5 rounded text-sm transition-colors ${selectedFile === file
                             ? 'bg-slate-200 font-medium'
-                            : 'hover:bg-slate-100'
+                            : 'hover:bg-white/10'
                           }`}
                       >
                         {file}
@@ -169,8 +169,8 @@ export default function AdminDocsPage() {
               )}
             </div>
 
-            {/* 右侧：编辑器 */}
-            <div className="col-span-9 bg-white rounded-lg shadow p-6">
+            {/* 鍙充晶锛氱紪杈戝櫒 */}
+            <div className="col-span-9 glass-surface bg-white/5 rounded-lg shadow p-6">
               {selectedCategory ? (
                 <>
                   <div className="flex items-center justify-between mb-4">
@@ -178,27 +178,27 @@ export default function AdminDocsPage() {
                       {!selectedFile && isEditing ? (
                         <input
                           type="text"
-                          placeholder="输入文件名 / Enter file name"
+                          placeholder="杈撳叆鏂囦欢鍚?/ Enter file name"
                           value={newFileName}
                           onChange={(e) => setNewFileName(e.target.value)}
                           className="px-3 py-2 border rounded"
                         />
                       ) : (
                         <h2 className="text-xl font-semibold">
-                          {selectedFile || '新文档 / New Document'}
+                          {selectedFile || '鏂版枃妗?/ New Document'}
                         </h2>
                       )}
                     </div>
                     <div className="flex gap-2">
                       {!isEditing ? (
                         <Button onClick={() => setIsEditing(true)}>
-                          编辑 / Edit
+                          缂栬緫 / Edit
                         </Button>
                       ) : (
                         <>
                           <Button onClick={saveDocument} className="bg-green-600 hover:bg-green-700">
                             <Save className="h-4 w-4 mr-2" />
-                            保存 / Save
+                            淇濆瓨 / Save
                           </Button>
                           <Button
                             onClick={() => {
@@ -211,7 +211,7 @@ export default function AdminDocsPage() {
                             }}
                             className="bg-slate-600 hover:bg-slate-700"
                           >
-                            取消 / Cancel
+                            鍙栨秷 / Cancel
                           </Button>
                         </>
                       )}
@@ -231,19 +231,19 @@ export default function AdminDocsPage() {
                       value={content}
                       onChange={(e) => setContent(e.target.value)}
                       className="w-full h-[600px] p-4 border rounded font-mono text-sm"
-                      placeholder="在这里编写Markdown内容... / Write Markdown content here..."
+                      placeholder="鍦ㄨ繖閲岀紪鍐橫arkdown鍐呭... / Write Markdown content here..."
                     />
                   ) : (
                     <div className="prose max-w-none p-4 border rounded min-h-[600px]">
                       <pre className="whitespace-pre-wrap font-mono text-sm">
-                        {content || '请选择一个文档或创建新文档 / Please select a document or create a new one'}
+                        {content || '璇烽€夋嫨涓€涓枃妗ｆ垨鍒涘缓鏂版枃妗?/ Please select a document or create a new one'}
                       </pre>
                     </div>
                   )}
                 </>
               ) : (
-                <div className="flex items-center justify-center h-[600px] text-slate-500">
-                  请先选择一个分类 / Please select a category first
+                <div className="flex items-center justify-center h-[600px] text-slate-300">
+                  璇峰厛閫夋嫨涓€涓垎绫?/ Please select a category first
                 </div>
               )}
             </div>
@@ -253,3 +253,6 @@ export default function AdminDocsPage() {
     </RequireLogin>
   );
 }
+
+
+

@@ -1,4 +1,4 @@
-import { DocsLayout } from '@/components/docs/DocsLayout';
+﻿import { DocsLayout } from '@/components/docs/DocsLayout';
 import { RequireLogin } from '@/components/auth/RequireLogin';
 import { getDocuments } from '@/lib/docs';
 
@@ -7,9 +7,11 @@ export default function AIModelPage() {
 
   return (
     <RequireLogin>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen">
         <DocsLayout documents={documents} />
       </div>
     </RequireLogin>
   );
 }
+
+

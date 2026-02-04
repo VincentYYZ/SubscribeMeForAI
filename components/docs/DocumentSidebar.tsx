@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -17,9 +17,9 @@ interface DocumentSidebarProps {
 
 export function DocumentSidebar({ documents, currentDoc, onDocumentSelect }: DocumentSidebarProps) {
   return (
-    <aside className="w-64 border-r border-slate-200 bg-slate-50 overflow-y-auto">
+    <aside className="w-64 border-r border-white/10 bg-white/5 backdrop-blur-2xl overflow-y-auto">
       <div className="p-4">
-        <h2 className="text-sm font-semibold text-slate-900 mb-4">文档列表</h2>
+        <h2 className="text-sm font-semibold text-white mb-4">文档列表</h2>
         <nav className="space-y-1">
           {documents.map((doc) => (
             <button
@@ -28,8 +28,8 @@ export function DocumentSidebar({ documents, currentDoc, onDocumentSelect }: Doc
               className={cn(
                 "w-full flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors text-left",
                 currentDoc === doc.slug
-                  ? "bg-blue-100 text-blue-700 font-medium"
-                  : "text-slate-700 hover:bg-slate-200"
+                  ? "bg-white/15 text-white font-medium"
+                  : "text-slate-300 hover:text-white hover:bg-white/10"
               )}
             >
               <FileText className="h-4 w-4 flex-shrink-0" />
@@ -41,3 +41,4 @@ export function DocumentSidebar({ documents, currentDoc, onDocumentSelect }: Doc
     </aside>
   );
 }
+

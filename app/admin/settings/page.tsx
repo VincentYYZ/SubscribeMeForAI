@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useState } from 'react'
 import { trpc } from '@/lib/trpc'
@@ -27,9 +27,9 @@ export default function AdminSettingsPage() {
 
   if (!checked) {
     return (
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen">
         <div className="container mx-auto p-6">
-          <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
+          <div className="rounded-xl glass-surface p-8 shadow-sm">
             正在检查管理员权限...
           </div>
         </div>
@@ -39,16 +39,16 @@ export default function AdminSettingsPage() {
 
   if (!isAdmin) {
     return (
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen">
         <div className="container mx-auto p-6">
-          <div className="rounded-xl border border-slate-200 bg-white p-10 text-center shadow-sm">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-600">
+          <div className="rounded-xl glass-surface p-10 text-center shadow-sm">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-300">
               <Lock className="h-5 w-5" />
             </div>
-            <h1 className="text-2xl font-semibold text-slate-900">需要管理员登录</h1>
-            <p className="mt-2 text-slate-600">请先使用管理员账号登录，才能查看此页面。</p>
+            <h1 className="text-2xl font-semibold text-white">需要管理员登录</h1>
+            <p className="mt-2 text-slate-300">请先使用管理员账号登录，才能查看此页面。</p>
             <Button
-              className="mt-6 bg-slate-900 hover:bg-slate-800"
+              className="mt-6 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500"
               onClick={() => (window.location.href = '/')}
             >
               返回首页
@@ -60,16 +60,16 @@ export default function AdminSettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen">
       <div className="container mx-auto p-6">
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-slate-900">管理员设置</h1>
-            <p className="text-slate-600 mt-2">Admin Settings</p>
+            <h1 className="text-3xl font-bold text-white">管理员设置</h1>
+            <p className="text-slate-300 mt-2">Admin Settings</p>
           </div>
           <Button
             onClick={() => usersQuery.refetch()}
-            className="bg-slate-900 hover:bg-slate-800"
+            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500"
             disabled={usersQuery.isFetching}
           >
             <RefreshCcw className="h-4 w-4 mr-2" />
@@ -77,20 +77,20 @@ export default function AdminSettingsPage() {
           </Button>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white shadow-sm">
-          <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4">
-            <div className="flex items-center gap-2 text-slate-800">
+        <div className="rounded-xl glass-surface shadow-sm">
+          <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+            <div className="flex items-center gap-2 text-white">
               <Users className="h-5 w-5" />
               <h2 className="text-lg font-semibold">注册用户</h2>
             </div>
-            <span className="text-sm text-slate-500">
+            <span className="text-sm text-slate-400">
               {usersQuery.data?.length ?? 0} 位用户
             </span>
           </div>
 
           <div className="overflow-x-auto">
             <table className="min-w-full text-sm">
-              <thead className="bg-slate-50 text-left text-slate-600">
+              <thead className="bg-white/5 text-left text-slate-300">
                 <tr>
                   <th className="px-6 py-3 font-medium">用户名</th>
                   <th className="px-6 py-3 font-medium">邮箱</th>
@@ -102,7 +102,7 @@ export default function AdminSettingsPage() {
               <tbody>
                 {usersQuery.isLoading && (
                   <tr>
-                    <td className="px-6 py-6 text-slate-500" colSpan={5}>
+                    <td className="px-6 py-6 text-slate-400" colSpan={5}>
                       正在加载用户数据...
                     </td>
                   </tr>
@@ -116,19 +116,19 @@ export default function AdminSettingsPage() {
                 )}
                 {!usersQuery.isLoading && !usersQuery.error && (usersQuery.data?.length ?? 0) === 0 && (
                   <tr>
-                    <td className="px-6 py-6 text-slate-500" colSpan={5}>
+                    <td className="px-6 py-6 text-slate-400" colSpan={5}>
                       暂无注册用户
                     </td>
                   </tr>
                 )}
                 {usersQuery.data?.map((user: UserRow) => (
-                  <tr key={user.id} className="border-t border-slate-100">
-                    <td className="px-6 py-4 font-medium text-slate-800">
+                  <tr key={user.id} className="border-t border-white/10">
+                    <td className="px-6 py-4 font-medium text-white">
                       {user.name || '未填写'}
                     </td>
-                    <td className="px-6 py-4 text-slate-600">{user.email}</td>
-                    <td className="px-6 py-4 text-slate-600">{user.pin || '—'}</td>
-                    <td className="px-6 py-4 text-slate-500">
+                    <td className="px-6 py-4 text-slate-300">{user.email}</td>
+                    <td className="px-6 py-4 text-slate-300">{user.pin || '-'}</td>
+                    <td className="px-6 py-4 text-slate-400">
                       {new Date(user.createdAt).toLocaleString()}
                     </td>
                     <td className="px-6 py-4">
@@ -155,3 +155,6 @@ export default function AdminSettingsPage() {
     </div>
   )
 }
+
+
+

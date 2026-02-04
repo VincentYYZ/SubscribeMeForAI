@@ -4,48 +4,59 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
+    --background: oklch(0.16 0.03 258);
+    --foreground: oklch(0.98 0.01 258);
+    --card: oklch(0.2 0.03 258);
+    --card-foreground: oklch(0.98 0.01 258);
+    --popover: oklch(0.2 0.03 258);
+    --popover-foreground: oklch(0.98 0.01 258);
+    --primary: oklch(0.78 0.14 235);
+    --primary-foreground: oklch(0.15 0.03 258);
+    --secondary: oklch(0.24 0.03 258);
+    --secondary-foreground: oklch(0.98 0.01 258);
+    --muted: oklch(0.24 0.03 258);
+    --muted-foreground: oklch(0.7 0.02 258);
+    --accent: oklch(0.24 0.03 258);
+    --accent-foreground: oklch(0.98 0.01 258);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.577 0.245 27.325);
+    --border: oklch(0.3 0.03 258);
+    --input: oklch(0.3 0.03 258);
+    --ring: oklch(0.72 0.12 235);
+    --radius: 0.625rem;
+
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-shadow: rgba(4, 10, 24, 0.6);
+    --glass-highlight: rgba(255, 255, 255, 0.22);
+    --glass-glow-cyan: rgba(34, 211, 238, 0.35);
+    --glass-glow-blue: rgba(59, 130, 246, 0.32);
+    --glass-glow-purple: rgba(167, 139, 250, 0.3);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --background: oklch(0.12 0.02 258);
+    --foreground: oklch(0.98 0.01 258);
+    --card: oklch(0.18 0.03 258);
+    --card-foreground: oklch(0.98 0.01 258);
+    --popover: oklch(0.18 0.03 258);
+    --popover-foreground: oklch(0.98 0.01 258);
+    --primary: oklch(0.84 0.14 235);
+    --primary-foreground: oklch(0.15 0.03 258);
+    --secondary: oklch(0.22 0.03 258);
+    --secondary-foreground: oklch(0.98 0.01 258);
+    --muted: oklch(0.22 0.03 258);
+    --muted-foreground: oklch(0.7 0.02 258);
+    --accent: oklch(0.22 0.03 258);
+    --accent-foreground: oklch(0.98 0.01 258);
+    --destructive: oklch(0.396 0.141 25.723);
+    --destructive-foreground: oklch(0.637 0.237 25.331);
+    --border: oklch(0.25 0.03 258);
+    --input: oklch(0.25 0.03 258);
+    --ring: oklch(0.72 0.12 235);
+
+    --glass-bg: rgba(255, 255, 255, 0.07);
+    --glass-border: rgba(255, 255, 255, 0.15);
   }
 }
 
@@ -55,6 +66,96 @@
   }
   body {
     @apply bg-background text-foreground;
+    min-height: 100%;
+  }
+}
+
+@layer components {
+  .liquid-backdrop {
+    position: relative;
+    background-color: #0a0f1f;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(56, 189, 248, 0.22), transparent 48%),
+      radial-gradient(circle at 78% 12%, rgba(124, 58, 237, 0.22), transparent 52%),
+      radial-gradient(circle at 48% 85%, rgba(45, 212, 191, 0.2), transparent 50%),
+      linear-gradient(180deg, rgba(8, 12, 24, 0.95), rgba(5, 9, 20, 1));
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  .liquid-backdrop::before {
+    content: "";
+    position: fixed;
+    inset: -20%;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(148, 163, 255, 0.12), transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.12), transparent 40%);
+    filter: blur(60px);
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .glass-surface {
+    position: relative;
+    @apply backdrop-blur-2xl border border-white/15;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+    box-shadow:
+      0 18px 60px rgba(0, 0, 0, 0.4),
+      inset 0 1px 1px rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-surface::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.3), transparent 40%);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .glass-glow {
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    opacity: 0.7;
+    filter: blur(16px);
+    background: linear-gradient(
+      to right,
+      var(--glass-glow-cyan),
+      var(--glass-glow-blue),
+      var(--glass-glow-purple)
+    );
+  }
+
+  .glass-highlight {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(to bottom, var(--glass-highlight), transparent);
+  }
+
+  .glass-inner-shadow {
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .glass {
+    will-change: transform;
+  }
+
+  .glass__warp {
+    will-change: filter;
+  }
+
+  .liquid-panel {
+    position: relative;
+    border-radius: 1.5rem;
   }
 }
 
@@ -116,5 +217,16 @@
 
   .page-shell {
     @apply container mx-auto px-4 py-16 md:px-6;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
   }
 }
