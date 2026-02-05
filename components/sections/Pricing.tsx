@@ -34,10 +34,10 @@ export function Pricing() {
     return (
         <section id="pricing" className="container py-8 md:py-12 lg:py-24 px-4 md:px-6 mx-auto">
             <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
-                <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl font-bold text-white">
+                <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl font-bold text-slate-900">
                     简单透明的价格
                 </h2>
-                <p className="max-w-[85%] leading-normal text-slate-300 sm:text-lg sm:leading-7">
+                <p className="max-w-[85%] leading-normal text-slate-600 sm:text-lg sm:leading-7">
                     一次付费，永久更新。投资自己，掌握未来。
                 </p>
             </div>
@@ -46,14 +46,14 @@ export function Pricing() {
                     <div
                         key={plan.title}
                         className={cn(
-                            "w-full rounded-xl border border-white/10 bg-slate-900/70 shadow-lg hover:shadow-xl transition-all duration-300",
+                            "w-full rounded-xl border border-slate-200 bg-white shadow-md hover:shadow-lg transition-all duration-300",
                             plan.highlighted && "ring-2 ring-cyan-400/40 border-cyan-400/20"
                         )}
                         style={{ animationDelay: `${index * 0.1}s` }}
                     >
                         <div className="relative flex h-full flex-col p-6">
                             {plan.badge && (
-                                <div className="absolute top-0 right-0 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-4 py-1.5 text-sm font-bold rounded-bl-xl shadow-lg flex items-center gap-1">
+                                <div className="absolute top-0 right-0 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-4 py-1.5 text-sm font-bold rounded-bl-xl shadow-md flex items-center gap-1">
                                     <Sparkles className="h-4 w-4" />
                                     {plan.badge}
                                 </div>
@@ -67,7 +67,7 @@ export function Pricing() {
                                 >
                                     {plan.title}
                                 </h3>
-                                <p className="text-base text-slate-300">{plan.description}</p>
+                                <p className="text-base text-slate-500">{plan.description}</p>
                             </div>
                             <div className="mt-6 space-y-6">
                                 <div>
@@ -79,7 +79,7 @@ export function Pricing() {
                                     >
                                         {plan.price}
                                     </div>
-                                    <div className="text-sm text-slate-300 mt-1">一次性付费</div>
+                                    <div className="text-sm text-slate-500 mt-1">一次性付费</div>
                                 </div>
                                 <div className="grid gap-3">
                                     {plan.features.map((feature) => (
@@ -89,12 +89,12 @@ export function Pricing() {
                                                     "flex h-6 w-6 shrink-0 items-center justify-center rounded-full",
                                                     plan.highlighted
                                                         ? "bg-cyan-500 text-white"
-                                                        : "bg-white/10 text-slate-200"
+                                                        : "bg-slate-100 text-slate-600"
                                                 )}
                                             >
                                                 <Check className="h-4 w-4" />
                                             </div>
-                                            <span className="text-sm text-slate-200">{feature}</span>
+                                            <span className="text-sm text-slate-600">{feature}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -102,7 +102,7 @@ export function Pricing() {
                             <div className="mt-auto pt-8">
                                 <Button
                                     className={cn(
-                                        "w-full bg-slate-800/50 text-white shadow-lg hover:bg-slate-700/50 border border-white/10 hover:border-white/20 rounded-xl",
+                                        "w-full bg-slate-900 text-white hover:bg-slate-800 rounded-xl",
                                         plan.highlighted && "bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 border-transparent font-semibold"
                                     )}
                                     size="lg"

@@ -6,9 +6,9 @@ import { FAQ } from "@/components/sections/FAQ";
 
 export default function HomePage() {
   return (
-    <div className="relative min-h-screen bg-slate-950">
+    <div className="relative min-h-screen bg-white">
       {/* Subtle gradient background - Konsta style cleaner look */}
-      <div className="fixed inset-0 bg-gradient-to-b from-slate-900 to-slate-950" />
+      <div className="fixed inset-0 bg-gradient-to-b from-white to-white" />
 
       {/* Content */}
       <div className="relative">

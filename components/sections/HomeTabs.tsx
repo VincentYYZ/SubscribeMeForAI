@@ -35,7 +35,7 @@ function Block({
     return (
         <div
             className={`
-        ${strong ? "bg-slate-900/80 border border-white/10" : ""}
+        ${strong ? "bg-white border border-slate-200 shadow-md" : ""}
         ${inset ? "mx-4 rounded-xl" : ""}
         ${strong && inset ? "shadow-lg" : ""}
         ${className}
@@ -48,7 +48,7 @@ function Block({
 
 function BlockTitle({ children }: { children: React.ReactNode }) {
     return (
-        <h2 className="px-4 pt-6 pb-2 text-sm font-semibold text-slate-400 uppercase tracking-wide">
+        <h2 className="px-4 pt-6 pb-2 text-sm font-semibold text-slate-500 uppercase tracking-wide">
             {children}
         </h2>
     );
@@ -65,8 +65,8 @@ function List({
 }) {
     return (
         <div
-            className={`${strong ? "bg-slate-900/60" : ""} ${
-                inset ? "mx-4 rounded-xl overflow-hidden border border-white/10" : ""
+            className={`${strong ? "bg-white" : ""} ${
+                inset ? "mx-4 rounded-xl overflow-hidden border border-slate-200" : ""
             }`}
         >
             {children}
@@ -84,11 +84,11 @@ function ListItem({
     media?: React.ReactNode;
 }) {
     return (
-        <div className="flex items-center px-4 py-3 border-b border-white/5 last:border-b-0">
+        <div className="flex items-center px-4 py-3 border-b border-slate-100 last:border-b-0">
             {media && <div className="mr-4 flex-shrink-0">{media}</div>}
             <div className="flex-1 min-w-0">
-                <div className="text-base font-medium text-white truncate">{title}</div>
-                {subtitle && <div className="text-sm text-slate-400 mt-0.5">{subtitle}</div>}
+                <div className="text-base font-medium text-slate-900 truncate">{title}</div>
+                {subtitle && <div className="text-sm text-slate-500 mt-0.5">{subtitle}</div>}
             </div>
         </div>
     );
@@ -108,12 +108,12 @@ export function HomeTabs() {
                                     <AccordionItem
                                         key={faq.question}
                                         value={`tab-faq-${index}`}
-                                        className="border-b border-white/10 last:border-b-0"
+                                        className="border-b border-slate-100 last:border-b-0"
                                     >
-                                        <AccordionTrigger className="py-3 text-sm font-semibold text-white hover:text-cyan-200">
+                                        <AccordionTrigger className="py-3 text-sm font-semibold text-slate-900 hover:text-cyan-600">
                                             {faq.question}
                                         </AccordionTrigger>
-                                        <AccordionContent className="text-sm text-slate-300">
+                                        <AccordionContent className="text-sm text-slate-600">
                                             {faq.answer}
                                         </AccordionContent>
                                     </AccordionItem>
@@ -134,28 +134,28 @@ export function HomeTabs() {
                             >
                                 <div className="relative flex h-full flex-col p-5">
                                     {plan.badge && (
-                                        <div className="absolute top-0 right-0 bg-cyan-500 text-white px-3 py-1 text-xs font-bold rounded-bl-lg flex items-center gap-1">
+                                        <div className="absolute top-0 right-0 bg-cyan-500 text-white px-3 py-1 text-xs font-bold rounded-bl-lg flex items-center gap-1 shadow-sm">
                                             <Sparkles className="h-3 w-3" />
                                             {plan.badge}
                                         </div>
                                     )}
                                     <div className="space-y-2">
-                                        <h3 className="text-xl text-white">{plan.title}</h3>
-                                        <p className="text-sm text-slate-400">{plan.description}</p>
+                                        <h3 className="text-xl text-slate-900">{plan.title}</h3>
+                                        <p className="text-sm text-slate-500">{plan.description}</p>
                                     </div>
                                     <div className="mt-4 grid gap-3">
-                                        <div className="text-3xl font-bold text-white">{plan.price}</div>
+                                        <div className="text-3xl font-bold text-slate-900">{plan.price}</div>
                                         <div className="grid gap-2">
                                             {plan.features.map((feature) => (
                                                 <div key={feature} className="flex items-center gap-2">
                                                     <Check className="h-4 w-4 text-cyan-300" />
-                                                    <span className="text-xs text-slate-200">{feature}</span>
+                                                    <span className="text-xs text-slate-600">{feature}</span>
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
                                     <div className="mt-auto pt-4">
-                                        <button className="w-full text-sm rounded-full bg-white/10 hover:bg-white/20 text-white py-2">
+                                        <button className="w-full text-sm rounded-full bg-slate-900 hover:bg-slate-800 text-white py-2 shadow-sm">
                                             立即购买
                                         </button>
                                     </div>
@@ -191,8 +191,8 @@ export function HomeTabs() {
             <div className="space-y-4">
                 <div className="px-4">
                     <div className="flex items-center gap-2 text-slate-400 text-xs">
-                        <span className="font-semibold tracking-[0.2em] uppercase text-cyan-300">快速浏览</span>
-                        <div className="h-px flex-1 bg-white/10" />
+                        <span className="font-semibold tracking-[0.2em] uppercase text-cyan-600">快速浏览</span>
+                        <div className="h-px flex-1 bg-slate-200" />
                         <span className="flex items-center gap-1">
                             <Sparkles className="h-3 w-3" />
                             一键切换
@@ -211,7 +211,7 @@ export function HomeTabs() {
                                     "px-4 py-2 rounded-full text-sm font-medium transition-all border flex items-center gap-2",
                                     activeTab === tab.id
                                         ? "bg-cyan-500 text-white border-transparent"
-                                        : "border-white/15 text-slate-300 hover:border-white/30 hover:text-white bg-white/5"
+                                        : "border-slate-200 text-slate-600 hover:border-slate-300 hover:text-slate-900 bg-white"
                                 )}
                                 aria-pressed={activeTab === tab.id}
                             >

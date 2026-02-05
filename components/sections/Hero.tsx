@@ -5,22 +5,21 @@ import { Button } from "@/components/ui/Button";
 export function Hero() {
     return (
         <section className="relative overflow-hidden py-10 md:py-16 lg:py-28">
-            {/* Konsta-inspired subtle gradients */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 to-slate-950" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.08),transparent_55%)]" />
+            {/* Clean white background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-white to-slate-50" />
 
             <div className="relative space-y-6">
                 <div className="container flex max-w-[64rem] flex-col items-center gap-6 text-center px-4 md:px-6 mx-auto">
                     {/* Badge with Konsta styling */}
                     <div className="animate-fade-in">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/80 border border-white/10 text-slate-100/90 text-sm font-medium shadow-lg">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-700 text-sm font-medium shadow-md">
                             <Sparkles className="w-4 h-4 text-cyan-400" />
                             2024 最新 AI 编程实战课程
                         </div>
                     </div>
 
                     {/* Main heading */}
-                    <h1 className="animate-slide-up font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white">
+                    <h1 className="animate-slide-up font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-slate-900">
                         零基础也能用{" "}
                         <span className="bg-gradient-to-r from-cyan-300 via-blue-200 to-purple-300 bg-clip-text text-transparent">
                             AI
@@ -31,7 +30,7 @@ export function Hero() {
 
                     {/* Description */}
                     <p
-                        className="animate-slide-up max-w-[42rem] text-base leading-relaxed text-slate-300 sm:text-xl"
+                        className="animate-slide-up max-w-[42rem] text-base leading-relaxed text-slate-600 sm:text-xl"
                         style={{ animationDelay: "0.1s" }}
                     >
                         不需要深厚的编程功底，不需要复杂的算法知识。
@@ -54,7 +53,7 @@ export function Hero() {
                         <Button
                             size="lg"
                             variant="outline"
-                            className="border-white/20 bg-slate-900/50 text-white hover:bg-slate-800/50 hover:border-white/30 rounded-xl px-8"
+                            className="border-slate-300 bg-white text-slate-900 hover:bg-slate-50 rounded-xl px-8"
                         >
                             查看大纲
                         </Button>

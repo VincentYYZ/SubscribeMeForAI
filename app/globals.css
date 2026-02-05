@@ -65,7 +65,8 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply border-border;
+    font-family: "PingFang SC", "SimHei", "Microsoft YaHei", sans-serif;
     min-height: 100%;
   }
 }

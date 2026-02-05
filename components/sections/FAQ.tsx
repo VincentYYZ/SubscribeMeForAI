@@ -30,12 +30,12 @@ export function FAQ() {
         <section id="faq" className="container py-8 md:py-12 lg:py-24 px-4 md:px-6 mx-auto">
             <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
                 <div className="flex items-center gap-3 mb-2">
-                    <HelpCircle className="h-8 w-8 text-cyan-300" />
-                    <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl font-bold text-white">
+                    <HelpCircle className="h-8 w-8 text-cyan-600" />
+                    <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl font-bold text-slate-900">
                         常见问题
                     </h2>
                 </div>
-                <p className="max-w-[85%] leading-normal text-slate-300 sm:text-lg sm:leading-7">
+                <p className="max-w-[85%] leading-normal text-slate-600 sm:text-lg sm:leading-7">
                     关于课程的一些常见疑问解答。
                 </p>
             </div>
@@ -48,14 +48,14 @@ export function FAQ() {
                             className="border-none"
                         >
                             <div
-                                className="w-full rounded-xl border border-white/10 bg-slate-900/70 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-white/20"
+                                className="w-full rounded-xl border border-slate-200 bg-white shadow-md hover:shadow-lg transition-all duration-300 hover:border-slate-300"
                                 style={{ animationDelay: `${index * 0.1}s` }}
                             >
                                 <div className="px-6">
-                                    <AccordionTrigger className="py-4 text-lg font-semibold text-white hover:text-cyan-200 transition-colors">
+                                    <AccordionTrigger className="py-4 text-lg font-semibold text-slate-900 hover:text-cyan-600 transition-colors">
                                         {faq.question}
                                     </AccordionTrigger>
-                                    <AccordionContent className="text-base text-slate-300 leading-relaxed pb-4">
+                                    <AccordionContent className="text-base text-slate-600 leading-relaxed pb-4">
                                         {faq.answer}
                                     </AccordionContent>
                                 </div>
