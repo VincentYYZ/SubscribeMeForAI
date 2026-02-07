@@ -12,6 +12,9 @@ const envSchema = z.object({
   NEXTAUTH_SECRET: z.string().min(32, 'NEXTAUTH_SECRET must be at least 32 characters'),
   NEXTAUTH_URL: z.string().url().min(1, 'NEXTAUTH_URL is required'),
 
+  // Monitoring (optional)
+  SENTRY_DSN: z.string().url().optional(),
+
   // Node environment
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
 });

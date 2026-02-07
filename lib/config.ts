@@ -13,6 +13,9 @@ export const config = {
     secret: env.NEXTAUTH_SECRET,
     url: env.NEXTAUTH_URL,
   },
+  monitoring: {
+    sentryDsn: env.SENTRY_DSN,
+  },
   app: {
     env: env.NODE_ENV,
     isDevelopment: env.NODE_ENV === 'development',
