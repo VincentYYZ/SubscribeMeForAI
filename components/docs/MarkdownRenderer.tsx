@@ -35,6 +35,7 @@ function flattenText(node: ReactNode): string {
 function extractHeadings(content: string): { id: string; text: string; level: number }[] {
   const extracted: { id: string; text: string; level: number }[] = [];
   const headingRegex = /^\s{0,3}(#{1,6})\s*(.+?)\s*#*\s*$/gm;
+  const idCounts = new Map<string, number>();
 
   for (const match of content.matchAll(headingRegex)) {
     const level = match[1].length;
@@ -42,7 +43,14 @@ function extractHeadings(content: string): { id: string; text: string; level: nu
     if (!text) {
       continue;
     }
-    extracted.push({ id: slugifyHeading(text), text, level });
+
+    // Generate unique ID for duplicate headings
+    const baseId = slugifyHeading(text);
+    const count = idCounts.get(baseId) || 0;
+    idCounts.set(baseId, count + 1);
+    const id = count === 0 ? baseId : `${baseId}-${count}`;
+
+    extracted.push({ id, text, level });
   }
 
   return extracted;
@@ -57,6 +65,16 @@ export function MarkdownRenderer({ content, onHeadingsExtracted }: MarkdownRende
     }
   }, [extractedHeadings, onHeadingsExtracted]);
 
+  // Track used IDs to prevent duplicates in rendering
+  const usedIds = useMemo(() => new Map<string, number>(), [content]);
+
+  const getUniqueId = (text: string): string => {
+    const baseId = slugifyHeading(text);
+    const count = usedIds.get(baseId) || 0;
+    usedIds.set(baseId, count + 1);
+    return count === 0 ? baseId : `${baseId}-${count}`;
+  };
+
   return (
     <article className="prose prose-invert max-w-none rounded-3xl glass-surface p-8">
       <ReactMarkdown
@@ -64,32 +82,32 @@ export function MarkdownRenderer({ content, onHeadingsExtracted }: MarkdownRende
         components={{
           h1: ({ children, ...props }: any) => {
             const text = flattenText(children);
-            const id = slugifyHeading(text);
+            const id = getUniqueId(text);
             return <h1 id={id} {...props}>{children}</h1>;
           },
           h2: ({ children, ...props }: any) => {
             const text = flattenText(children);
-            const id = slugifyHeading(text);
+            const id = getUniqueId(text);
             return <h2 id={id} {...props}>{children}</h2>;
           },
           h3: ({ children, ...props }: any) => {
             const text = flattenText(children);
-            const id = slugifyHeading(text);
+            const id = getUniqueId(text);
             return <h3 id={id} {...props}>{children}</h3>;
           },
           h4: ({ children, ...props }: any) => {
             const text = flattenText(children);
-            const id = slugifyHeading(text);
+            const id = getUniqueId(text);
             return <h4 id={id} {...props}>{children}</h4>;
           },
           h5: ({ children, ...props }: any) => {
             const text = flattenText(children);
-            const id = slugifyHeading(text);
+            const id = getUniqueId(text);
             return <h5 id={id} {...props}>{children}</h5>;
           },
           h6: ({ children, ...props }: any) => {
             const text = flattenText(children);
-            const id = slugifyHeading(text);
+            const id = getUniqueId(text);
             return <h6 id={id} {...props}>{children}</h6>;
           },
           code({ node, inline, className, children, ...props }: any) {
