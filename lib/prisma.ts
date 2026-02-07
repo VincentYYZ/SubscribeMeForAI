@@ -2,20 +2,29 @@ import { PrismaClient } from '@prisma/client';
 import { config } from './config';
 import { logger } from './logger.server';
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined;
-};
-
-export const prisma =
-  globalForPrisma.prisma ??
-  new PrismaClient({
+// Extended PrismaClient type with event emitter
+const prismaClientSingleton = () => {
+  return new PrismaClient({
     datasources: {
       db: {
         url: config.database.url,
       },
     },
-    log: config.app.isDevelopment ? ['query', 'error', 'warn'] : ['error'],
+    log: config.app.isDevelopment
+      ? [
+          { emit: 'event', level: 'query' },
+          { emit: 'event', level: 'error' },
+          { emit: 'event', level: 'warn' },
+        ]
+      : [{ emit: 'event', level: 'error' }],
   });
+};
+
+declare const globalThis: {
+  prismaGlobal: ReturnType<typeof prismaClientSingleton>;
+} & typeof global;
+
+export const prisma = globalThis.prismaGlobal ?? prismaClientSingleton();
 
 // Event listeners for logging database operations
 if (config.app.isDevelopment) {
@@ -62,4 +71,4 @@ const gracefulShutdown = async () => {
 process.on('SIGINT', gracefulShutdown);
 process.on('SIGTERM', gracefulShutdown);
 
-if (!config.app.isProduction) globalForPrisma.prisma = prisma;
+if (!config.app.isProduction) globalThis.prismaGlobal = prisma;
