@@ -32,3 +32,11 @@ out/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Public Assets
+# Track directory structure but optionally ignore uploaded files
+# public/images/*.jpg
+# public/images/*.png
+# public/fonts/*
+# !public/images/.gitkeep
+# !public/fonts/.gitkeep
