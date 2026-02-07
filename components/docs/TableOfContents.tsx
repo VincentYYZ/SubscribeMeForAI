@@ -16,7 +16,24 @@ interface TableOfContentsProps {
 export function TableOfContents({ headings, activeId }: TableOfContentsProps) {
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id);
-    if (element) {
+    if (!element) return;
+
+    // Find the scrollable container (main element with overflow-y-auto)
+    const scrollContainer = element.closest('main');
+
+    if (scrollContainer) {
+      // Calculate the position relative to the scroll container
+      const containerRect = scrollContainer.getBoundingClientRect();
+      const elementRect = element.getBoundingClientRect();
+      const relativeTop = elementRect.top - containerRect.top + scrollContainer.scrollTop;
+
+      // Scroll with offset for better visibility (80px offset for spacing)
+      scrollContainer.scrollTo({
+        top: relativeTop - 80,
+        behavior: 'smooth'
+      });
+    } else {
+      // Fallback to default behavior
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
