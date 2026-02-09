@@ -65,8 +65,8 @@ export function MarkdownRenderer({ content, onHeadingsExtracted }: MarkdownRende
     }
   }, [extractedHeadings, onHeadingsExtracted]);
 
-  // Track used IDs to prevent duplicates in rendering
-  const usedIds = useMemo(() => new Map<string, number>(), [content]);
+  // Recreate counters on every render so heading ids stay stable across re-renders.
+  const usedIds = new Map<string, number>();
 
   const getUniqueId = (text: string): string => {
     const baseId = slugifyHeading(text);
