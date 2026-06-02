@@ -35,9 +35,9 @@ function Block({
     return (
         <div
             className={`
-        ${strong ? "bg-white border border-slate-200 shadow-md" : ""}
-        ${inset ? "mx-4 rounded-xl" : ""}
-        ${strong && inset ? "shadow-lg" : ""}
+        ${strong ? "bg-card border border-border shadow-sm" : ""}
+        ${inset ? "mx-4 rounded-md" : ""}
+        ${strong && inset ? "shadow-md" : ""}
         ${className}
       `}
         >
@@ -48,7 +48,7 @@ function Block({
 
 function BlockTitle({ children }: { children: React.ReactNode }) {
     return (
-        <h2 className="px-4 pt-6 pb-2 text-sm font-semibold text-slate-500 uppercase tracking-wide">
+        <h2 className="px-4 pb-2 pt-6 text-sm font-semibold uppercase tracking-wide text-muted">
             {children}
         </h2>
     );
@@ -65,8 +65,8 @@ function List({
 }) {
     return (
         <div
-            className={`${strong ? "bg-white" : ""} ${
-                inset ? "mx-4 rounded-xl overflow-hidden border border-slate-200" : ""
+            className={`${strong ? "bg-card" : ""} ${
+                inset ? "mx-4 overflow-hidden rounded-md border border-border" : ""
             }`}
         >
             {children}
@@ -84,11 +84,11 @@ function ListItem({
     media?: React.ReactNode;
 }) {
     return (
-        <div className="flex items-center px-4 py-3 border-b border-slate-100 last:border-b-0">
+        <div className="flex items-center border-b border-border px-4 py-3 last:border-b-0">
             {media && <div className="mr-4 flex-shrink-0">{media}</div>}
             <div className="flex-1 min-w-0">
-                <div className="text-base font-medium text-slate-900 truncate">{title}</div>
-                {subtitle && <div className="text-sm text-slate-500 mt-0.5">{subtitle}</div>}
+                <div className="truncate text-base font-medium text-foreground">{title}</div>
+                {subtitle && <div className="mt-0.5 text-sm text-muted">{subtitle}</div>}
             </div>
         </div>
     );
@@ -108,12 +108,12 @@ export function HomeTabs() {
                                     <AccordionItem
                                         key={faq.question}
                                         value={`tab-faq-${index}`}
-                                        className="border-b border-slate-100 last:border-b-0"
+                                        className="border-b border-border last:border-b-0"
                                     >
-                                        <AccordionTrigger className="py-3 text-sm font-semibold text-slate-900 hover:text-cyan-600">
+                                        <AccordionTrigger className="py-3 text-sm font-semibold text-foreground hover:text-accent">
                                             {faq.question}
                                         </AccordionTrigger>
-                                        <AccordionContent className="text-sm text-slate-600">
+                                        <AccordionContent className="text-sm text-muted">
                                             {faq.answer}
                                         </AccordionContent>
                                     </AccordionItem>
@@ -130,32 +130,32 @@ export function HomeTabs() {
                                 key={plan.title}
                                 strong
                                 inset
-                                className={cn("mx-0", plan.highlighted && "ring-1 ring-cyan-400/40")}
+                                className={cn("mx-0", plan.highlighted && "border-accent ring-1 ring-accent/30")}
                             >
                                 <div className="relative flex h-full flex-col p-5">
                                     {plan.badge && (
-                                        <div className="absolute top-0 right-0 bg-cyan-500 text-white px-3 py-1 text-xs font-bold rounded-bl-lg flex items-center gap-1 shadow-sm">
+                                        <div className="absolute right-0 top-0 flex items-center gap-1 rounded-bl-md bg-accent px-3 py-1 text-xs font-bold text-accent-foreground shadow-sm">
                                             <Sparkles className="h-3 w-3" />
                                             {plan.badge}
                                         </div>
                                     )}
                                     <div className="space-y-2">
-                                        <h3 className="text-xl text-slate-900">{plan.title}</h3>
-                                        <p className="text-sm text-slate-500">{plan.description}</p>
+                                        <h3 className="text-xl text-foreground">{plan.title}</h3>
+                                        <p className="text-sm text-muted">{plan.description}</p>
                                     </div>
                                     <div className="mt-4 grid gap-3">
-                                        <div className="text-3xl font-bold text-slate-900">{plan.price}</div>
+                                        <div className="text-3xl font-bold text-foreground">{plan.price}</div>
                                         <div className="grid gap-2">
                                             {plan.features.map((feature) => (
                                                 <div key={feature} className="flex items-center gap-2">
-                                                    <Check className="h-4 w-4 text-cyan-300" />
-                                                    <span className="text-xs text-slate-600">{feature}</span>
+                                                    <Check className="h-4 w-4 text-accent" />
+                                                    <span className="text-xs text-muted">{feature}</span>
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
                                     <div className="mt-auto pt-4">
-                                        <button className="w-full text-sm rounded-full bg-slate-900 hover:bg-slate-800 text-white py-2 shadow-sm">
+                                        <button className="w-full rounded-md bg-primary py-2 text-sm text-primary-foreground shadow-sm hover:bg-primary/90">
                                             立即购买
                                         </button>
                                     </div>
@@ -174,7 +174,7 @@ export function HomeTabs() {
                                 subtitle={feature.description}
                                 media={
                                     <div
-                                        className={`inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br ${feature.color} text-white`}
+                                        className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border bg-secondary text-foreground"
                                     >
                                         <feature.icon className="h-5 w-5" />
                                     </div>
@@ -190,9 +190,9 @@ export function HomeTabs() {
         <section className="relative py-8">
             <div className="space-y-4">
                 <div className="px-4">
-                    <div className="flex items-center gap-2 text-slate-400 text-xs">
-                        <span className="font-semibold tracking-[0.2em] uppercase text-cyan-600">快速浏览</span>
-                        <div className="h-px flex-1 bg-slate-200" />
+                    <div className="flex items-center gap-2 text-xs text-muted">
+                        <span className="font-semibold uppercase tracking-[0.2em] text-foreground">快速浏览</span>
+                        <div className="h-px flex-1 bg-border" />
                         <span className="flex items-center gap-1">
                             <Sparkles className="h-3 w-3" />
                             一键切换
@@ -210,8 +210,8 @@ export function HomeTabs() {
                                 className={cn(
                                     "px-4 py-2 rounded-full text-sm font-medium transition-all border flex items-center gap-2",
                                     activeTab === tab.id
-                                        ? "bg-cyan-500 text-white border-transparent"
-                                        : "border-slate-200 text-slate-600 hover:border-slate-300 hover:text-slate-900 bg-white"
+                                        ? "border-transparent bg-primary text-primary-foreground"
+                                        : "border-border bg-card text-muted hover:border-foreground/30 hover:text-foreground"
                                 )}
                                 aria-pressed={activeTab === tab.id}
                             >
@@ -228,5 +228,4 @@ export function HomeTabs() {
         </section>
     );
 }
-
 

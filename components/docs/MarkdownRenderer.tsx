@@ -76,7 +76,7 @@ export function MarkdownRenderer({ content, onHeadingsExtracted }: MarkdownRende
   };
 
   return (
-    <article className="prose prose-invert max-w-none rounded-3xl glass-surface p-8">
+    <article className="prose prose-mm max-w-none rounded-md glass-surface p-7">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -134,4 +134,3 @@ export function MarkdownRenderer({ content, onHeadingsExtracted }: MarkdownRende
     </article>
   );
 }
-

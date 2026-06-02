@@ -47,8 +47,8 @@ export class ErrorBoundary extends Component<Props, State> {
       }
 
       return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-          <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-6">
+        <div className="flex min-h-screen items-center justify-center bg-background px-4">
+          <div className="w-full max-w-md rounded-md border border-border bg-card p-6 shadow-sm">
             <div className="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full">
               <svg
                 className="w-6 h-6 text-red-600"
@@ -64,14 +64,14 @@ export class ErrorBoundary extends Component<Props, State> {
                 />
               </svg>
             </div>
-            <h2 className="mt-4 text-xl font-semibold text-center text-gray-900">
+            <h2 className="mt-4 text-center text-xl font-semibold text-foreground">
               Something went wrong
             </h2>
-            <p className="mt-2 text-sm text-center text-gray-600">
+            <p className="mt-2 text-center text-sm text-muted">
               We apologize for the inconvenience. Please try refreshing the page.
             </p>
             {process.env.NODE_ENV === 'development' && this.state.error && (
-              <details className="mt-4 p-4 bg-gray-100 rounded text-xs">
+              <details className="mt-4 rounded bg-secondary p-4 text-xs">
                 <summary className="cursor-pointer font-semibold">
                   Error Details
                 </summary>
@@ -82,7 +82,7 @@ export class ErrorBoundary extends Component<Props, State> {
             )}
             <button
               onClick={() => window.location.reload()}
-              className="mt-6 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors"
+              className="mt-6 w-full rounded-md bg-primary px-4 py-2 text-primary-foreground transition-colors hover:bg-primary/90"
             >
               Reload Page
             </button>

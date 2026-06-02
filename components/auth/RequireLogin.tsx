@@ -21,7 +21,7 @@ export function RequireLogin({ children }: RequireLoginProps) {
   if (!checked) {
     return (
       <div className="min-h-screen">
-        <div className="container mx-auto p-6 text-slate-300">
+        <div className="container mx-auto p-6 text-muted">
           正在检查登录状态...
         </div>
       </div>
@@ -33,10 +33,10 @@ export function RequireLogin({ children }: RequireLoginProps) {
       <div className="min-h-screen">
         <div className="container mx-auto p-6">
           <div className="rounded-xl glass-surface p-10 text-center shadow-sm">
-            <h1 className="text-2xl font-semibold text-white">请先登录</h1>
-            <p className="mt-2 text-slate-300">登录后即可访问此页面。</p>
+            <h1 className="text-2xl font-semibold text-foreground">请先登录</h1>
+            <p className="mt-2 text-muted">登录后即可访问此页面。</p>
             <Button
-              className="mt-6 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500"
+              className="mt-6"
               onClick={() => (window.location.href = '/')}
             >
               返回首页
@@ -49,4 +49,3 @@ export function RequireLogin({ children }: RequireLoginProps) {
 
   return <>{children}</>
 }
-

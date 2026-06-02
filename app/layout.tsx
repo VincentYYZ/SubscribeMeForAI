@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
 import "./globals.css";
 import { TRPCProvider } from "./providers";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { createMetadata } from "@/lib/metadata";
-
-const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = createMetadata({
   title: "SubscribeMeForAI - AI学习平台",
@@ -23,13 +20,13 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#f3f1ed" />
       </head>
-      <body className={`${geist.className} font-sans liquid-backdrop`}>
+      <body className="bg-background text-foreground">
         <TRPCProvider>
-          <div className="min-h-screen flex flex-col">
+          <div className="home-page min-h-screen">
             <Navbar />
-            <main className="flex-1">{children}</main>
+            <main>{children}</main>
             <Footer />
           </div>
         </TRPCProvider>

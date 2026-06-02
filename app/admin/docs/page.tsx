@@ -109,13 +109,13 @@ export default function AdminDocsPage() {
       <div className="min-h-screen">
         <div className="container mx-auto p-6">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold text-white">鏂囨。绠＄悊鍚庡彴</h1>
-            <p className="text-slate-300 mt-2">Document Management Dashboard</p>
+            <h1 className="text-3xl font-bold text-foreground">鏂囨。绠＄悊鍚庡彴</h1>
+            <p className="mt-2 text-muted">Document Management Dashboard</p>
           </div>
 
           <div className="grid grid-cols-12 gap-6">
             {/* 宸︿晶锛氬垎绫诲拰鏂囦欢鍒楄〃 */}
-            <div className="col-span-3 glass-surface bg-white/5 rounded-lg shadow p-4">
+            <div className="col-span-3 rounded-md glass-surface p-4 shadow-sm">
               <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
                 <FolderOpen className="h-5 w-5" />
                 鍒嗙被 / Categories
@@ -125,9 +125,9 @@ export default function AdminDocsPage() {
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`w-full text-left px-3 py-2 rounded transition-colors ${selectedCategory === cat
-                        ? 'bg-white/15 text-white font-medium'
-                        : 'hover:bg-white/10'
+                    className={`w-full rounded px-3 py-2 text-left transition-colors ${selectedCategory === cat
+                        ? 'bg-secondary text-foreground font-medium'
+                        : 'text-muted hover:bg-secondary hover:text-foreground'
                       }`}
                   >
                     {cat}
@@ -137,7 +137,7 @@ export default function AdminDocsPage() {
 
               {selectedCategory && (
                 <>
-                  <hr className="my-4 border-white/10" />
+                  <hr className="my-4 border-border" />
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="font-semibold flex items-center gap-2">
                       <FileText className="h-4 w-4" />
@@ -156,9 +156,9 @@ export default function AdminDocsPage() {
                       <button
                         key={file}
                         onClick={() => setSelectedFile(file)}
-                        className={`w-full text-left px-2 py-1.5 rounded text-sm transition-colors ${selectedFile === file
-                            ? 'bg-slate-200 font-medium'
-                            : 'hover:bg-white/10'
+                        className={`w-full rounded px-2 py-1.5 text-left text-sm transition-colors ${selectedFile === file
+                            ? 'bg-secondary text-foreground font-medium'
+                            : 'text-muted hover:bg-secondary hover:text-foreground'
                           }`}
                       >
                         {file}
@@ -170,7 +170,7 @@ export default function AdminDocsPage() {
             </div>
 
             {/* 鍙充晶锛氱紪杈戝櫒 */}
-            <div className="col-span-9 glass-surface bg-white/5 rounded-lg shadow p-6">
+            <div className="col-span-9 rounded-md glass-surface p-6 shadow-sm">
               {selectedCategory ? (
                 <>
                   <div className="flex items-center justify-between mb-4">
@@ -181,7 +181,7 @@ export default function AdminDocsPage() {
                           placeholder="杈撳叆鏂囦欢鍚?/ Enter file name"
                           value={newFileName}
                           onChange={(e) => setNewFileName(e.target.value)}
-                          className="px-3 py-2 border rounded"
+                          className="rounded border border-border bg-card px-3 py-2 text-foreground outline-none focus:border-foreground"
                         />
                       ) : (
                         <h2 className="text-xl font-semibold">
@@ -196,7 +196,7 @@ export default function AdminDocsPage() {
                         </Button>
                       ) : (
                         <>
-                          <Button onClick={saveDocument} className="bg-green-600 hover:bg-green-700">
+                          <Button onClick={saveDocument}>
                             <Save className="h-4 w-4 mr-2" />
                             淇濆瓨 / Save
                           </Button>
@@ -209,7 +209,7 @@ export default function AdminDocsPage() {
                                 setContent('');
                               }
                             }}
-                            className="bg-slate-600 hover:bg-slate-700"
+                            variant="secondary"
                           >
                             鍙栨秷 / Cancel
                           </Button>
@@ -230,11 +230,11 @@ export default function AdminDocsPage() {
                     <textarea
                       value={content}
                       onChange={(e) => setContent(e.target.value)}
-                      className="w-full h-[600px] p-4 border rounded font-mono text-sm"
+                      className="h-[600px] w-full rounded border border-border bg-card p-4 font-mono text-sm text-foreground outline-none focus:border-foreground"
                       placeholder="鍦ㄨ繖閲岀紪鍐橫arkdown鍐呭... / Write Markdown content here..."
                     />
                   ) : (
-                    <div className="prose max-w-none p-4 border rounded min-h-[600px]">
+                    <div className="prose prose-mm min-h-[600px] max-w-none rounded border border-border bg-card p-4">
                       <pre className="whitespace-pre-wrap font-mono text-sm">
                         {content || '璇烽€夋嫨涓€涓枃妗ｆ垨鍒涘缓鏂版枃妗?/ Please select a document or create a new one'}
                       </pre>
@@ -242,7 +242,7 @@ export default function AdminDocsPage() {
                   )}
                 </>
               ) : (
-                <div className="flex items-center justify-center h-[600px] text-slate-300">
+                <div className="flex h-[600px] items-center justify-center text-muted">
                   璇峰厛閫夋嫨涓€涓垎绫?/ Please select a category first
                 </div>
               )}
@@ -253,6 +253,5 @@ export default function AdminDocsPage() {
     </RequireLogin>
   );
 }
-
 
 

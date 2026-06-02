@@ -234,7 +234,7 @@ const GlassContainer = forwardRef<
       >
         {glowEffect && (
           <div
-            className="absolute -inset-2 rounded-2xl bg-gradient-to-r from-cyan-400/50 via-blue-500/50 to-purple-500/50 blur-2xl opacity-90 pointer-events-none"
+            className="pointer-events-none absolute -inset-2 rounded-2xl bg-[var(--mm-clay)]/30 opacity-80 blur-2xl"
             style={{ borderRadius: `${cornerRadius + 8}px` }}
           />
         )}
@@ -658,4 +658,3 @@ export default function LiquidGlass({
     </>
   )
 }
-

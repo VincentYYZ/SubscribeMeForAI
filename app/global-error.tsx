@@ -26,8 +26,8 @@ export default function GlobalError({
   return (
     <html>
       <body>
-        <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
-          <div className="max-w-lg w-full bg-white shadow-2xl rounded-lg p-8">
+        <div className="flex min-h-screen items-center justify-center bg-background px-4">
+          <div className="w-full max-w-lg rounded-md border border-border bg-card p-8 shadow-sm">
             <div className="flex items-center justify-center w-20 h-20 mx-auto bg-red-100 rounded-full">
               <svg
                 className="w-10 h-10 text-red-600"
@@ -44,17 +44,17 @@ export default function GlobalError({
               </svg>
             </div>
 
-            <h1 className="mt-6 text-3xl font-bold text-center text-gray-900">
+            <h1 className="mt-6 text-center text-3xl font-bold text-foreground">
               Critical Error
             </h1>
 
-            <p className="mt-4 text-center text-gray-600">
+            <p className="mt-4 text-center text-muted">
               A critical error occurred while loading the application.
               Our team has been notified and is working to resolve this issue.
             </p>
 
             {process.env.NODE_ENV === 'development' && (
-              <details className="mt-6 p-4 bg-gray-100 rounded">
+              <details className="mt-6 rounded bg-secondary p-4">
                 <summary className="cursor-pointer font-semibold text-sm">
                   Error Details (Development Only)
                 </summary>
@@ -73,28 +73,28 @@ export default function GlobalError({
             <div className="mt-8 space-y-3">
               <button
                 onClick={reset}
-                className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                className="w-full rounded-md bg-primary px-4 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
               >
                 Try to Recover
               </button>
 
               <button
                 onClick={() => (window.location.href = '/')}
-                className="w-full bg-gray-600 text-white py-3 px-4 rounded-lg hover:bg-gray-700 transition-colors font-medium"
+                className="w-full rounded-md border border-border bg-card px-4 py-3 font-medium text-foreground transition-colors hover:bg-secondary"
               >
                 Go to Homepage
               </button>
 
               <button
                 onClick={() => window.location.reload()}
-                className="w-full border-2 border-gray-300 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+                className="w-full rounded-md border border-border px-4 py-3 font-medium text-foreground transition-colors hover:bg-secondary"
               >
                 Reload Application
               </button>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-gray-200">
-              <p className="text-xs text-center text-gray-500">
+            <div className="mt-6 border-t border-border pt-6">
+              <p className="text-center text-xs text-muted">
                 If this problem persists, please contact support or try again later.
               </p>
             </div>

@@ -23,8 +23,8 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-8">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="w-full max-w-md rounded-md border border-border bg-card p-8 shadow-sm">
         <div className="flex items-center justify-center w-16 h-16 mx-auto bg-red-100 rounded-full">
           <svg
             className="w-8 h-8 text-red-600"
@@ -41,16 +41,16 @@ export default function Error({
           </svg>
         </div>
 
-        <h1 className="mt-6 text-2xl font-bold text-center text-gray-900">
+        <h1 className="mt-6 text-center text-2xl font-bold text-foreground">
           Oops! Something went wrong
         </h1>
 
-        <p className="mt-4 text-center text-gray-600">
+        <p className="mt-4 text-center text-muted">
           We encountered an unexpected error. Please try again.
         </p>
 
         {process.env.NODE_ENV === 'development' && (
-          <details className="mt-6 p-4 bg-gray-100 rounded">
+          <details className="mt-6 rounded bg-secondary p-4">
             <summary className="cursor-pointer font-semibold text-sm">
               Error Details (Development Only)
             </summary>
@@ -68,14 +68,14 @@ export default function Error({
         <div className="mt-6 space-y-3">
           <button
             onClick={reset}
-            className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            className="w-full rounded-md bg-primary px-4 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Try Again
           </button>
 
           <button
             onClick={() => (window.location.href = '/')}
-            className="w-full bg-gray-200 text-gray-800 py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors font-medium"
+            className="w-full rounded-md border border-border bg-card px-4 py-3 font-medium text-foreground transition-colors hover:bg-secondary"
           >
             Go to Homepage
           </button>

@@ -39,19 +39,19 @@ export function TableOfContents({ headings, activeId }: TableOfContentsProps) {
   };
 
   return (
-    <aside className="w-64 border-l border-white/10 bg-white/5 backdrop-blur-2xl overflow-y-auto">
+    <aside className="w-52 shrink-0 overflow-y-auto border-l border-border bg-card">
       <div className="p-4 sticky top-0">
-        <h2 className="text-sm font-semibold text-white mb-4">目录</h2>
+        <h2 className="mb-4 text-sm font-semibold text-foreground">目录</h2>
         <nav className="space-y-1">
           {headings.map((heading) => (
             <button
               key={heading.id}
               onClick={() => scrollToHeading(heading.id)}
               className={cn(
-                "w-full text-left text-sm transition-colors py-1.5 px-2 rounded",
+                "w-full rounded px-2 py-1.5 text-left text-sm transition-colors",
                 activeId === heading.id
-                  ? "text-white font-medium bg-white/15"
-                  : "text-slate-300 hover:text-white hover:bg-white/10"
+                  ? "bg-secondary font-medium text-foreground"
+                  : "text-muted hover:bg-secondary hover:text-foreground"
               )}
               style={{ paddingLeft: `${(heading.level - 1) * 0.75 + 0.5}rem` }}
             >
@@ -63,4 +63,3 @@ export function TableOfContents({ headings, activeId }: TableOfContentsProps) {
     </aside>
   );
 }
-
