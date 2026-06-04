@@ -1,4 +1,4 @@
-﻿import { DocsLayout } from '@/components/docs/DocsLayout';
+﻿import { CourseIndexPage } from '@/components/docs/CourseIndexPage';
 import { RequireLogin } from '@/components/auth/RequireLogin';
 import { getDocuments } from '@/lib/docs';
 
@@ -7,11 +7,14 @@ export default function AIModelPage() {
 
   return (
     <RequireLogin>
-      <div className="min-h-screen">
-        <DocsLayout documents={documents} />
-      </div>
+      <CourseIndexPage
+        title="AI 模型"
+        description="了解语言模型、多模态模型和视觉模型的基本概念，以及它们在产品和自动化流程中的应用。"
+        eyebrow="学习目录"
+        meta="基础"
+        basePath="/ai-model"
+        documents={documents}
+      />
     </RequireLogin>
   );
 }
-
-

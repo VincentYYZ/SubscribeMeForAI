@@ -38,6 +38,10 @@ export function getDocuments(category: string): Document[] {
   return documents;
 }
 
+export function getDocument(category: string, slug: string): Document | null {
+  return getDocuments(category).find((document) => document.slug === slug) || null;
+}
+
 function extractTitleFromContent(content: string): string | null {
   const match = content.match(/^#\s+(.+)$/m);
   return match ? match[1] : null;

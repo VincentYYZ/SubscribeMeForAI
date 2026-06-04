@@ -2,6 +2,12 @@ import { initTRPC, TRPCError } from '@trpc/server'
 import { prisma } from '@/lib/prisma'
 import { logger } from '@/lib/logger.server'
 import { apiLimiter } from '@/lib/rate-limit'
+import { initAdminAccount } from '@/lib/init-admin'
+
+// Initialize admin account on server startup
+initAdminAccount().catch((error) => {
+  logger.error({ error }, 'Failed to initialize admin account')
+})
 
 /**
  * Context type for tRPC procedures

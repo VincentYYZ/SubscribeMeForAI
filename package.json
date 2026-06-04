@@ -2,6 +2,9 @@
   "name": "subscribe-me-for-ai",
   "version": "0.1.0",
   "private": true,
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
@@ -54,6 +57,7 @@
   },
   "devDependencies": {
     "@types/pino": "^7.0.4",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "tsx": "^4.19.2"
   }
 }

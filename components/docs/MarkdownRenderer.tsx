@@ -9,6 +9,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 interface MarkdownRendererProps {
   content: string;
   onHeadingsExtracted?: (headings: { id: string; text: string; level: number }[]) => void;
+  surface?: 'card' | 'plain';
 }
 
 function slugifyHeading(text: string): string {
@@ -56,7 +57,7 @@ function extractHeadings(content: string): { id: string; text: string; level: nu
   return extracted;
 }
 
-export function MarkdownRenderer({ content, onHeadingsExtracted }: MarkdownRendererProps) {
+export function MarkdownRenderer({ content, onHeadingsExtracted, surface = 'card' }: MarkdownRendererProps) {
   const extractedHeadings = useMemo(() => extractHeadings(content), [content]);
 
   useEffect(() => {
@@ -76,7 +77,7 @@ export function MarkdownRenderer({ content, onHeadingsExtracted }: MarkdownRende
   };
 
   return (
-    <article className="prose prose-mm max-w-none rounded-md glass-surface p-7">
+    <article className={surface === 'card' ? 'prose prose-mm max-w-none rounded-md glass-surface p-7' : 'prose prose-mm max-w-none'}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
