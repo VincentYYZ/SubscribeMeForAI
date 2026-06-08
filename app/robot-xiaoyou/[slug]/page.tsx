@@ -27,6 +27,7 @@ export default async function RobotXiaoYouDocumentPage({
         document={document}
         parentHref="/robot-xiaoyou"
         parentTitle="机器人小鼬"
+        category="robot-xiaoyou"
       />
     </RequireLogin>
   );

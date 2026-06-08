@@ -26,12 +26,21 @@ export function Navbar() {
     const [userPin, setUserPin] = useState("");
     const [currentUserName, setCurrentUserName] = useState<string | null>(null);
     const isLoggedIn = Boolean(currentUserName || isAdmin);
-    const adminCredentials = {
-        username: "admin",
-        email: "admin@qq.com",
-        password: "admin",
-        pin: "1212",
-    };
+    const adminLoginMutation = trpc.admin.login.useMutation({
+        onSuccess: (data) => {
+            window.localStorage.setItem("isAdmin", "true");
+            setIsAdmin(true);
+            setAdminUsername("");
+            setAdminEmail("");
+            setAdminPassword("");
+            setAdminPin("");
+            setIsLoginOpen(false);
+            alert("管理员登录成功 / Admin login successful");
+        },
+        onError: (error) => {
+            alert(error.message || "管理员账号信息不正确 / Invalid admin credentials");
+        },
+    });
     const registerMutation = trpc.user.register.useMutation({
         onSuccess: () => {
             alert("注册成功！已同步到数据库 / Registration successful");
@@ -67,24 +76,12 @@ export function Navbar() {
     }, []);
 
     const handleAdminLogin = () => {
-        if (
-            adminUsername === adminCredentials.username &&
-            adminEmail === adminCredentials.email &&
-            adminPassword === adminCredentials.password &&
-            adminPin === adminCredentials.pin
-        ) {
-            window.localStorage.setItem("isAdmin", "true");
-            setIsAdmin(true);
-            setAdminUsername("");
-            setAdminEmail("");
-            setAdminPassword("");
-            setAdminPin("");
-            setIsLoginOpen(false);
-            alert("管理员登录成功 / Admin login successful");
-            return;
-        }
-
-        alert("管理员账号信息不正确 / Invalid admin credentials");
+        adminLoginMutation.mutate({
+            name: adminUsername,
+            email: adminEmail,
+            password: adminPassword,
+            pin: adminPin,
+        });
     };
 
     const handleAdminLogout = () => {
@@ -118,16 +115,16 @@ export function Navbar() {
 
   return (
     <div className="topbar pt-8">
-      <div className="flex items-center gap-4">
-        <Link href="/" className="font-bold text-foreground text-lg hover:underline transition-colors">
+      <div className="flex items-center gap-4 shrink-0">
+        <Link href="/" className="font-bold text-foreground text-lg hover:underline transition-colors whitespace-nowrap">
           人工智能分享
         </Link>
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-3 flex-nowrap">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-muted hover:text-foreground hover:underline transition-colors"
+              className="text-xs text-muted hover:text-foreground hover:underline transition-colors whitespace-nowrap"
             >
               {link.label}
             </Link>
@@ -135,7 +132,7 @@ export function Navbar() {
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 shrink-0">
         <div className="flex items-center gap-2">
           {!isLoggedIn ? (
             <>
@@ -156,12 +153,17 @@ export function Navbar() {
               </button>
             </>
           ) : (
-            <button
-              className="lang-toggle"
-              onClick={handleLogout}
-            >
-              退出
-            </button>
+            <>
+              <span className="text-sm text-muted">
+                {isAdmin ? "👑 管理员" : "👤"} {currentUserName}
+              </span>
+              <button
+                className="lang-toggle"
+                onClick={handleLogout}
+              >
+                退出
+              </button>
+            </>
           )}
         </div>
       </div>
@@ -271,12 +273,17 @@ export function Navbar() {
               </div>
               <button
                 type="submit"
-                disabled={loginMode === "user" && userLoginMutation.isPending}
+                disabled={
+                  (loginMode === "user" && userLoginMutation.isPending) ||
+                  (loginMode === "admin" && adminLoginMutation.isPending)
+                }
                 className="w-full mt-4 bg-foreground text-background py-2 rounded text-sm font-medium hover:opacity-90"
               >
                 {loginMode === "user" && userLoginMutation.isPending
                   ? "登录中..."
-                  : "登录"}
+                  : loginMode === "admin" && adminLoginMutation.isPending
+                    ? "登录中..."
+                    : "登录"}
               </button>
             </form>
           </div>

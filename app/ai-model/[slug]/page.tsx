@@ -27,6 +27,7 @@ export default async function AIModelDocumentPage({
         document={document}
         parentHref="/ai-model"
         parentTitle="AI 模型"
+        category="ai-model"
       />
     </RequireLogin>
   );

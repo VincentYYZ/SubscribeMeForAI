@@ -6,12 +6,14 @@ interface CourseDocumentPageProps {
   document: Document;
   parentHref: string;
   parentTitle: string;
+  category?: string;
 }
 
 export function CourseDocumentPage({
   document,
   parentHref,
   parentTitle,
+  category,
 }: CourseDocumentPageProps) {
   return (
     <div className="space-y-10">
@@ -28,7 +30,7 @@ export function CourseDocumentPage({
         </div>
       </header>
 
-      <MarkdownRenderer content={document.content} surface="plain" />
+      <MarkdownRenderer content={document.content} surface="plain" category={category} />
     </div>
   );
 }

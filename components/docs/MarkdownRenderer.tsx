@@ -10,6 +10,7 @@ interface MarkdownRendererProps {
   content: string;
   onHeadingsExtracted?: (headings: { id: string; text: string; level: number }[]) => void;
   surface?: 'card' | 'plain';
+  category?: string;
 }
 
 function slugifyHeading(text: string): string {
@@ -57,7 +58,7 @@ function extractHeadings(content: string): { id: string; text: string; level: nu
   return extracted;
 }
 
-export function MarkdownRenderer({ content, onHeadingsExtracted, surface = 'card' }: MarkdownRendererProps) {
+export function MarkdownRenderer({ content, onHeadingsExtracted, surface = 'card', category }: MarkdownRendererProps) {
   const extractedHeadings = useMemo(() => extractHeadings(content), [content]);
 
   useEffect(() => {
@@ -127,6 +128,13 @@ export function MarkdownRenderer({ content, onHeadingsExtracted, surface = 'card
                 {children}
               </code>
             );
+          },
+          img: ({ src, alt, ...props }: any) => {
+            let resolvedSrc = src;
+            if (resolvedSrc && category && !resolvedSrc.startsWith('/') && !resolvedSrc.startsWith('http')) {
+              resolvedSrc = `/api/content-image?category=${encodeURIComponent(category)}&path=${encodeURIComponent(resolvedSrc)}`;
+            }
+            return <img src={resolvedSrc} alt={alt || ''} {...props} style={{ maxWidth: '100%', height: 'auto' }} />;
           },
         }}
       >

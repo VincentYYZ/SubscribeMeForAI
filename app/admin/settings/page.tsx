@@ -13,10 +13,30 @@ type UserRow = UserList[number]
 export default function AdminSettingsPage() {
   const [isAdmin, setIsAdmin] = useState(false)
   const [checked, setChecked] = useState(false)
+  const [showAddForm, setShowAddForm] = useState(false)
+  const [newName, setNewName] = useState('')
+  const [newEmail, setNewEmail] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [newPin, setNewPin] = useState('')
+
   const usersQuery = trpc.user.list.useQuery()
   const deleteMutation = trpc.user.delete.useMutation({
     onSuccess: () => {
       usersQuery.refetch()
+    },
+  })
+  const registerMutation = trpc.user.register.useMutation({
+    onSuccess: () => {
+      usersQuery.refetch()
+      setShowAddForm(false)
+      setNewName('')
+      setNewEmail('')
+      setNewPassword('')
+      setNewPin('')
+      alert('用户创建成功 / User created successfully')
+    },
+    onError: (error) => {
+      alert(error.message || '创建失败 / Failed to create user')
     },
   })
 
@@ -82,10 +102,82 @@ export default function AdminSettingsPage() {
               <Users className="h-5 w-5" />
               <h2 className="text-lg font-semibold">注册用户</h2>
             </div>
-            <span className="text-sm text-muted">
-              {usersQuery.data?.length ?? 0} 位用户
-            </span>
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-muted">
+                {usersQuery.data?.length ?? 0} 位用户
+              </span>
+              <Button
+                size="sm"
+                onClick={() => setShowAddForm(!showAddForm)}
+              >
+                {showAddForm ? '取消' : '添加用户'}
+              </Button>
+            </div>
           </div>
+
+          {showAddForm && (
+            <div className="border-b border-border px-6 py-4 bg-secondary/30">
+              <h3 className="text-sm font-medium text-foreground mb-3">添加新用户</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs text-muted block mb-1">用户名</label>
+                  <input
+                    type="text"
+                    value={newName}
+                    onChange={(e) => setNewName(e.target.value)}
+                    className="w-full rounded border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-foreground"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs text-muted block mb-1">邮箱</label>
+                  <input
+                    type="email"
+                    value={newEmail}
+                    onChange={(e) => setNewEmail(e.target.value)}
+                    className="w-full rounded border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-foreground"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs text-muted block mb-1">密码</label>
+                  <input
+                    type="text"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    className="w-full rounded border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-foreground"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs text-muted block mb-1">PIN 码</label>
+                  <input
+                    type="text"
+                    value={newPin}
+                    onChange={(e) => setNewPin(e.target.value)}
+                    className="w-full rounded border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-foreground"
+                  />
+                </div>
+              </div>
+              <div className="mt-3 flex justify-end">
+                <Button
+                  size="sm"
+                  disabled={registerMutation.isPending}
+                  onClick={() => {
+                    if (!newName || !newEmail || !newPassword || !newPin) {
+                      alert('请填写所有字段 / Please fill in all fields')
+                      return
+                    }
+                    registerMutation.mutate({
+                      name: newName,
+                      email: newEmail,
+                      password: newPassword,
+                      pin: newPin,
+                    })
+                  }}
+                >
+                  {registerMutation.isPending ? '创建中...' : '创建用户'}
+                </Button>
+              </div>
+            </div>
+          )}
 
           <div className="overflow-x-auto">
             <table className="min-w-full text-sm">

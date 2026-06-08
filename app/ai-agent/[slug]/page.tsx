@@ -27,6 +27,7 @@ export default async function AIAgentDocumentPage({
         document={document}
         parentHref="/ai-agent"
         parentTitle="AI-Agent"
+        category="ai-agent"
       />
     </RequireLogin>
   );

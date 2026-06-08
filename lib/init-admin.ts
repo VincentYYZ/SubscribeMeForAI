@@ -1,4 +1,5 @@
 import { prisma } from './prisma'
+import { getAdminConfig } from './admin-config'
 
 let initialized = false
 
@@ -13,11 +14,12 @@ export async function initAdminAccount() {
   }
 
   try {
-    // Admin account configuration from environment variables
-    const adminName = process.env.ADMIN_NAME || 'admin'
-    const adminEmail = process.env.ADMIN_EMAIL || 'admin@qq.com'
-    const adminPassword = process.env.ADMIN_PASSWORD || 'admin'
-    const adminPin = process.env.ADMIN_PIN || '1212'
+    // Load admin configuration from config/admin.json
+    const config = getAdminConfig()
+    const adminName = config.name
+    const adminEmail = config.email
+    const adminPassword = config.password
+    const adminPin = config.pin
 
     // Check if admin account already exists
     const existingAdmin = await prisma.user.findUnique({

@@ -27,6 +27,7 @@ export default async function AICodingDocumentPage({
         document={document}
         parentHref="/ai-coding"
         parentTitle="AI 编程"
+        category="ai-coding"
       />
     </RequireLogin>
   );
