@@ -1,13 +1,9 @@
 import { notFound } from 'next/navigation';
 import { RequireLogin } from '@/components/auth/RequireLogin';
 import { CourseDocumentPage } from '@/components/docs/CourseDocumentPage';
-import { getDocument, getDocuments } from '@/lib/docs';
+import { getDocument } from '@/lib/docs';
 
-export function generateStaticParams() {
-  return getDocuments('ai-coding').map((document) => ({
-    slug: document.slug,
-  }));
-}
+export const dynamic = 'force-dynamic'
 
 export default async function AICodingDocumentPage({
   params,

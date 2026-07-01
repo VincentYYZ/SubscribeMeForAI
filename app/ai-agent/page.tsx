@@ -2,6 +2,8 @@
 import { RequireLogin } from '@/components/auth/RequireLogin';
 import { getDocuments } from '@/lib/docs';
 
+export const dynamic = 'force-dynamic'
+
 export default function AIAgentPage() {
   const documents = getDocuments('ai-agent');
 
